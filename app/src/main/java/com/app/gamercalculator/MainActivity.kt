@@ -15,6 +15,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,6 +39,7 @@ class MainActivity : ComponentActivity() {
 
 @ExperimentalMaterialApi
 @ExperimentalPagerApi
+@Preview
 @Composable
 fun MainScreen() {
     val tabs = listOf(
@@ -61,9 +63,9 @@ fun MainScreen() {
 
 @Composable
 fun TopBar() {
-    androidx.compose.material.TopAppBar(
-        title = { Text(text = "Tabs", fontSize = 18.sp) },
-        backgroundColor = Color.Green,
+    TopAppBar(
+        title = { Text(text = "Calculadora Gamer", fontSize = 18.sp) },
+        backgroundColor = colorResource(id = R.color.colorPrimaryTransparent),
         contentColor = Color.Black
     )
 }
@@ -74,9 +76,9 @@ fun TopBar() {
 fun Tabs(tabs: List<TabItem>, pagerState: PagerState){
 
     val scope = rememberCoroutineScope()
-    androidx.compose.material.TabRow(
+    TabRow(
         selectedTabIndex = pagerState.currentPage,
-        backgroundColor = Color.Green,
+        backgroundColor = colorResource(id = R.color.colorPrimary),
         contentColor = Color.Black,
         indicator = { tabPositions ->
             TabRowDefaults.Indicator(
@@ -109,7 +111,7 @@ fun TabsContent(tabs: List<TabItem>, pagerState: PagerState){
 }
 
 
-
+@Preview
 @Composable
 fun CalculatorView() {
     Column(
@@ -126,6 +128,7 @@ fun CalculatorView() {
     }
 }
 
+@Preview
 @Composable
 fun ConfigurationView() {
     Column(

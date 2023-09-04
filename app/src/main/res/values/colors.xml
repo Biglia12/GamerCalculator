@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimary">#0D8AB9</color>
+    <color name="colorPrimaryTransparent">#0D97B9</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +9,40 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="transparentDarkness">#64000000</color>
+    <color name="red">#F00</color>
+    <color name="badge_red">#D94D4D</color>
+    <color name="white_background_section_DP">#ededed </color>
+    <color name="note_color_a">#f3f86f</color>
+    <color name="note_color_b">#f26f67</color>
+    <color name="note_color_c">#f3c165</color>
+    <color name="note_color_d">#ffffff</color>
+    <color name="note_color_e">#bac3c8</color>
+    <color name="note_color_f">#69c5f5</color>
+    <color name="note_color_g">#91f6db</color>
+    <color name="note_color_h">#b9f974</color>
+    <color name="darkGreen">#539C04</color>
+    <color name="note_color_grey_light">#757575</color>
+    <color name="backgroundMyMessage">#9ad1ce</color>
+    <color name="color_dark_text">#2B2B2B</color>
+    <color name="white_background">#F1F1F1</color>
+    <color name="white_background_sec">#FFFFFF</color>
+    <color name="main_black_text">#2B2B2B</color>
+    <color name="main_gray_text">#707070</color>
+    <color name="black_gray_text">#757575</color>
+    <color name="main_gray_text_50">#D9707070</color>
+    <color name="no_stock_backgound">#F6D2D2</color>
+    <color name="no_stock_text">#DE0713</color>
+    <color name="show_more_text">#85AD51</color>
+    <color name="separator_color">#32707070</color>
+    <color name="fade_black">#80000000</color>
+    <color name="gray_separator">#BFBFBF</color>
+    <color name="transparentLigthSeparator">#DFDFDF</color>
+    <color name="pending">#D32F2F</color>
+    <color name="modified">#F57C00</color>
+    <color name="complete">#558B2F</color>
+    <color name="pending_back">#D8D9F7</color>
+    <color name="invalid">#7C7C7C</color>
+    <color name="blue">#0D8AB9</color>
 </resources>
