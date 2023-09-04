@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
@@ -64,7 +65,7 @@ fun MainScreen() {
 @Composable
 fun TopBar() {
     TopAppBar(
-        title = { Text(text = "Calculadora Gamer", fontSize = 18.sp) },
+        title = { Text(text = "Calculadora Gamer", fontSize = 18.sp, color = Color.White) },
         backgroundColor = colorResource(id = R.color.colorPrimaryTransparent),
         contentColor = Color.Black
     )
@@ -79,7 +80,7 @@ fun Tabs(tabs: List<TabItem>, pagerState: PagerState){
     TabRow(
         selectedTabIndex = pagerState.currentPage,
         backgroundColor = colorResource(id = R.color.colorPrimary),
-        contentColor = Color.Black,
+        contentColor = Color.White,
         indicator = { tabPositions ->
             TabRowDefaults.Indicator(
                 Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
@@ -90,7 +91,7 @@ fun Tabs(tabs: List<TabItem>, pagerState: PagerState){
 
             LeadingIconTab(
                 icon = { Icon(painter = painterResource(id = tab.icon), contentDescription = "") },
-                text = { Text(text = tab.title) },
+                text = { Text(text = stringResource(id = tab.title)) },
                 selected = pagerState.currentPage == index,
                 onClick = {
                     scope.launch {
