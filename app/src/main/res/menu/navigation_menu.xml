@@ -2,10 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/homeFragment"
         android:title="Home"
         android:icon="@drawable/ic_launcher_background"/>
 
     <item
+        android:id="@+id/calculatorFragment"
         android:title="Calculator"
         android:icon="@drawable/ic_launcher_background"/>
 
