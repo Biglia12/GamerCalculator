@@ -9,7 +9,9 @@ import com.app.gamercalculator.R
 import com.app.gamercalculator.databinding.FragmentHomeBinding
 import com.app.gamercalculator.ui.viewmodel.HomeViewModel
 import androidx.fragment.app.FragmentManager
+import dagger.hilt.android.AndroidEntryPoint
 
+/*@AndroidEntryPoint*/
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
@@ -23,6 +25,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
         binding?.textHome?.text = "dadasd"
+
+        viewModel.getDollar()
+
+
     }
 
 
