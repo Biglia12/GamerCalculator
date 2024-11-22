@@ -10,8 +10,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val getDollarUseCase: GetDollarUseCase) : ViewModel() {
 
-
-    fun getDollar() {
+     fun getDollar() {
         viewModelScope.launch {
             getDollarUseCase.getDollar()
         }
