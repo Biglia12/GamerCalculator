@@ -1,4 +1,4 @@
-package com.app.gamercalculator.data
+package com.app.gamercalculator.di
 
 import com.app.gamercalculator.data.network.ApiService
 import com.app.gamercalculator.data.repository.DollarDataRepository
