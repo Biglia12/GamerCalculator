@@ -7,8 +7,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-//@HiltViewModel
-class HomeViewModel /*@Inject constructor*/(private val getDollarUseCase: GetDollarUseCase) : ViewModel() {
+@HiltViewModel
+class HomeViewModel @Inject constructor(private val getDollarUseCase: GetDollarUseCase) : ViewModel() {
 
 
     fun getDollar() {

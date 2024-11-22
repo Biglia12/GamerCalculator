@@ -12,7 +12,7 @@ import com.app.gamercalculator.databinding.FragmentHomeBinding
 import com.app.gamercalculator.ui.viewmodel.CalculatorViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-/*@AndroidEntryPoint*/
+@AndroidEntryPoint
 class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
 
     private val viewModel: CalculatorViewModel by viewModels()

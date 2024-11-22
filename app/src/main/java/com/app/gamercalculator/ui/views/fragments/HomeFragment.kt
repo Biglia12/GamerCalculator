@@ -11,7 +11,7 @@ import com.app.gamercalculator.ui.viewmodel.HomeViewModel
 import androidx.fragment.app.FragmentManager
 import dagger.hilt.android.AndroidEntryPoint
 
-/*@AndroidEntryPoint*/
+@AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
