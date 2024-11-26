@@ -1,7 +1,10 @@
 package com.app.gamercalculator.di
 
 import com.app.gamercalculator.data.network.ApiService
-import com.app.gamercalculator.data.repository.DollarDataRepository
+import com.app.gamercalculator.data.repository.dollar.DollarDataRepository
+import com.app.gamercalculator.data.repository.dollar.dataSource.DollarCloudDataSource
+import com.app.gamercalculator.data.repository.dollar.dataSource.DollarRoomDataSource
+import com.app.gamercalculator.data.repository.dollar.mappers.DollarDataMapper
 import com.app.gamercalculator.domain.repository.DollarRepository
 import dagger.Module
 import dagger.Provides
@@ -15,7 +18,11 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideDollarRepository(apiService: ApiService): DollarRepository {
-        return DollarDataRepository(apiService)
+    fun provideDollarRepository(
+        cloudDataSource: DollarCloudDataSource,
+        roomDataSource: DollarRoomDataSource,
+        dataMapper: DollarDataMapper
+    ): DollarRepository {
+        return DollarDataRepository(cloudDataSource, roomDataSource, dataMapper)
     }
 }

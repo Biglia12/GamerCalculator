@@ -1,7 +1,8 @@
 package com.app.gamercalculator.domain.repository
 
-import com.app.gamercalculator.data.model.DollarResponse
+import com.app.gamercalculator.domain.entities.Dollar
 
 interface DollarRepository {
-    suspend fun getDollar(): List<DollarResponse>
+    suspend fun getDollarFromApi()
+    suspend fun getAllFromDatabase(): List<Dollar>
 }
