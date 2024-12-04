@@ -10,6 +10,7 @@ import com.app.gamercalculator.domain.entities.Plataforms
 import com.app.gamercalculator.domain.usecases.GetDollarUseCase
 import com.app.gamercalculator.domain.usecases.GetPlataformsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -32,9 +33,9 @@ class HomeViewModel @Inject constructor(
     private val _getAllDollar = MutableLiveData<List<Dollar>>()
 
 
-    fun getDollar() {
-        viewModelScope.launch {
-            getDollarUseCase.getDollar()
+    fun getDollarFromApi() {
+        viewModelScope.launch(Dispatchers.IO) {
+            getDollarUseCase.getDollarFromApi()
             // val listDollar = getDollarUseCase.getDollar()
             // _dollar.postValue(listDollar)
         }
@@ -46,13 +47,13 @@ class HomeViewModel @Inject constructor(
             val plataformsDollar = getPlataformsUseCase.getPlataformsDollar()
             _plataformsDollar.postValue(plataformsDollar)
         }
-
-        fun getDollarRoom(){
-            viewModelScope.launch {
-                val listDollar = getDollarUseCase.getAllFromDatabase()
-                _getAllDollar.postValue(listDollar)
-            }
-        }
-
     }
+
+    fun getAllDollar() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val listDollar = getDollarUseCase.getAllFromDatabase()
+            _getAllDollar.postValue(listDollar)
+        }
+    }
+
 }

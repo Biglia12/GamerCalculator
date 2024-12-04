@@ -5,7 +5,9 @@ import com.app.gamercalculator.data.repository.dollar.DollarDataRepository
 import com.app.gamercalculator.data.repository.dollar.dataSource.DollarCloudDataSource
 import com.app.gamercalculator.data.repository.dollar.dataSource.DollarRoomDataSource
 import com.app.gamercalculator.data.repository.dollar.mappers.DollarDataMapper
+import com.app.gamercalculator.data.repository.plataforms.PlataformsDataRepository
 import com.app.gamercalculator.domain.repository.DollarRepository
+import com.app.gamercalculator.domain.repository.PlataformsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,5 +26,12 @@ object RepositoryModule {
         dataMapper: DollarDataMapper
     ): DollarRepository {
         return DollarDataRepository(cloudDataSource, roomDataSource, dataMapper)
+    }
+
+    @Provides
+    @Singleton
+    fun providePlataformsRepository(
+    ): PlataformsRepository {
+        return PlataformsDataRepository()
     }
 }

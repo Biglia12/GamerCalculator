@@ -8,7 +8,7 @@ class GetDollarUseCase @Inject constructor(
     private val repository: DollarRepository
 ) {
 
-    suspend fun getDollar() {
+    suspend fun getDollarFromApi() {
         repository.getDollarFromApi()
     }
 
