@@ -1,3 +1,3 @@
 package com.app.gamercalculator.domain.entities
 
-data class Plataforms(private val image: Int, private val name: String, private val price: String)
+data class Plataforms(val image: Int, val name: String, val price: String)
