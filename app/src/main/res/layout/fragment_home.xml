@@ -6,93 +6,113 @@
     android:layout_height="match_parent"
     tools:context=".ui.views.fragments.HomeFragment">
 
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
+    <TextView
+        android:id="@+id/txt_title_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Elegi la manera de pagar en tu plataforma"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linear_btns_dollar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_title_choose">
+
+        <Button
+            android:id="@+id/button_dolarmep"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="MEP" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        <Button
+            android:id="@+id/button_tarjeta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="TARJETA" />
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:text="Calculadora de Gamer" />
+    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/title_prices_dollar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:text="Tiendas en dolares"
-                    android:textSize="20dp" />
+    <EditText
+        android:id="@+id/et_price_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_btns_dollar" />
 
+    <TextView
+        android:id="@+id/txt_tax_iva"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="IVA 21%: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_price_number" />
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    app:cardCornerRadius="12dp">
+    <TextView
+        android:id="@+id/result_price_iva"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_tax_iva"
+        app:layout_constraintStart_toEndOf="@+id/txt_tax_iva"
+        app:layout_constraintTop_toTopOf="@+id/txt_tax_iva"
+        tools:text="10" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_dollar_companies"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="16dp"
-                        android:nestedScrollingEnabled="false" />
+    <TextView
+        android:id="@+id/txt_tax_pais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Pais 8%: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tax_iva" />
 
-                </androidx.cardview.widget.CardView>
+    <TextView
+        android:id="@+id/result_price_pais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_tax_pais"
+        app:layout_constraintStart_toEndOf="@+id/txt_tax_pais"
+        app:layout_constraintTop_toTopOf="@+id/txt_tax_pais"
+        tools:text="10" />
 
+    <TextView
+        android:id="@+id/txt_tax_arca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Percepcion RG ARCA 30%:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tax_pais" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:textColor="@color/black"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/title_prices_pesos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:text="Tiendas en pesos"
-                    android:textSize="20dp" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_pesos_companies"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:layout_marginTop="8dp"
-                    android:nestedScrollingEnabled="false" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-    </androidx.core.widget.NestedScrollView>
+    <TextView
+        android:id="@+id/result_price_arca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_tax_arca"
+        app:layout_constraintStart_toEndOf="@+id/txt_tax_arca"
+        app:layout_constraintTop_toTopOf="@+id/txt_tax_arca"
+        tools:text="10" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

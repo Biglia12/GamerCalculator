@@ -35,6 +35,11 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
+                R.id.subscriptionsFragment -> {
+                    navController.navigate(R.id.subscriptionsFragment)
+                    true
+                }
+
                 R.id.calculatorFragment -> {
                     navController.navigate(R.id.calculatorFragment)
                     true

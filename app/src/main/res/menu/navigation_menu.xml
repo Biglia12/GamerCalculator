@@ -7,6 +7,11 @@
         android:icon="@drawable/ic_launcher_background"/>
 
     <item
+        android:id="@+id/subscriptionsFragment"
+        android:title="Subscriptions"
+        android:icon="@drawable/ic_launcher_background"/>
+
+    <item
         android:id="@+id/calculatorFragment"
         android:title="Calculator"
         android:icon="@drawable/ic_launcher_background"/>

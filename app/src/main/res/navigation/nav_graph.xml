@@ -21,5 +21,10 @@
         android:name="com.app.gamercalculator.ui.views.fragments.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" />
+    <fragment
+        android:id="@+id/subscriptionsFragment"
+        android:name="com.app.gamercalculator.ui.views.fragments.SubscriptionsFragment"
+        android:label="fragment_subscriptions"
+        tools:layout="@layout/fragment_subscriptions" />
 
 </navigation>

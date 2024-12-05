@@ -26,7 +26,12 @@ class CalculatorFragment : Fragment(R.layout.fragment_calculator) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCalculatorBinding.bind(view)
-        //binding?.textHome?.text = "dadasd"
+
+        //observers()
+    }
+
+    private fun observers() {
+        TODO("Not yet implemented")
     }
 
 }
