@@ -11,13 +11,33 @@ import retrofit2.http.GET
 interface DollarDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     suspend fun insert(dollar: List<DollarVO>)
+    suspend fun insert(dollar: List<DollarVO>)
 
     @Query("SELECT * FROM Dollar_table")
-     suspend fun getAll(): List<DollarVO>
+    suspend fun getAll(): List<DollarVO>
+
+    @Query("SELECT * FROM Dollar_table WHERE house = 'bolsa'")
+    suspend fun getDollarMep(id: Int): DollarVO
+
+    @Query("SELECT * FROM Dollar_table WHERE house = 'tarjeta'")
+    suspend fun getDollarCard(id: Int): DollarVO
+
+    @Query("SELECT * FROM Dollar_table WHERE house = 'cripto'")
+    suspend fun getDollarCripto(id: Int): DollarVO
+
+    @Query("SELECT sell FROM Dollar_table WHERE house = 'bolsa'")
+    suspend fun getSellDollarMep(): Double
+
+    @Query("SELECT sell FROM Dollar_table WHERE house = 'tarjeta'")
+    suspend fun getSellDollarCard(): Double
+
+    @Query("SELECT sell FROM Dollar_table WHERE house = 'cripto'")
+    suspend fun getSellDollarCripto(): Double
+
+
 
     @Query("DELETE FROM Dollar_table")
-     suspend fun delete()
+    suspend fun delete()
 
 
 }
