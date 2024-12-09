@@ -17,13 +17,13 @@ interface DollarDao {
     suspend fun getAll(): List<DollarVO>
 
     @Query("SELECT * FROM Dollar_table WHERE house = 'bolsa'")
-    suspend fun getDollarMep(id: Int): DollarVO
+    suspend fun getDollarMep(): DollarVO
 
     @Query("SELECT * FROM Dollar_table WHERE house = 'tarjeta'")
-    suspend fun getDollarCard(id: Int): DollarVO
+    suspend fun getDollarCard(): DollarVO
 
     @Query("SELECT * FROM Dollar_table WHERE house = 'cripto'")
-    suspend fun getDollarCripto(id: Int): DollarVO
+    suspend fun getDollarCripto(): DollarVO
 
     @Query("SELECT sell FROM Dollar_table WHERE house = 'bolsa'")
     suspend fun getSellDollarMep(): Double

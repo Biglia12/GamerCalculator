@@ -43,6 +43,14 @@
             android:layout_weight="1"
             android:text="TARJETA" />
 
+        <Button
+            android:id="@+id/button_cripto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:text="Cripto"/>
+
     </LinearLayout>
 
     <EditText
@@ -114,5 +122,24 @@
         app:layout_constraintTop_toTopOf="@+id/txt_tax_arca"
         tools:text="10" />
 
+    <TextView
+        android:id="@+id/final_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:text="Precio Final"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tax_arca" />
+
+    <TextView
+        android:id="@+id/total_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="$0"
+        app:layout_constraintBottom_toBottomOf="@+id/final_price"
+        app:layout_constraintStart_toEndOf="@+id/final_price"
+        app:layout_constraintTop_toTopOf="@+id/final_price" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
