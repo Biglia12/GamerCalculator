@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.gamercalculator.data.model.DollarResponse
 import com.app.gamercalculator.domain.entities.Dollar
+import com.app.gamercalculator.domain.entities.DollarTaxes
 import com.app.gamercalculator.domain.entities.Plataforms
 import com.app.gamercalculator.domain.usecases.GetDollarUseCase
 import com.app.gamercalculator.domain.usecases.GetPlataformsUseCase
@@ -32,6 +33,9 @@ class HomeViewModel @Inject constructor(
     val getAllDollar: LiveData<List<Dollar>> get() = _getAllDollar
     private val _getAllDollar = MutableLiveData<List<Dollar>>()
 
+    val dollarCard: LiveData<DollarTaxes> get() = _dollarCard
+    private val _dollarCard = MutableLiveData<DollarTaxes>()
+
 
     fun getDollarFromApi() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -49,11 +53,30 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getAllDollar() {
+    fun getDollarCard(inputNnumber: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val listDollar = getDollarUseCase.getAllFromDatabase()
-            _getAllDollar.postValue(listDollar)
+            val data = getDollarUseCase.getDollarCard(inputNnumber)
+            _dollarCard.postValue(data)
         }
     }
 
-}
+    fun getDollarMep(){
+       /* viewModelScope.launch(Dispatchers.IO) {
+            val listDollar = getDollarUseCase.getDollarMep()
+            _dollar.postValue(listDollar)
+        }*/
+    }
+
+    fun getDollarCripto() {
+        /*viewModelScope.launch(Dispatchers.IO) {
+            val listDollar = getDollarUseCase.getDollarCripto()
+            _dollar.postValue(listDollar)*/
+        }
+
+        fun getAllDollar() {
+            viewModelScope.launch(Dispatchers.IO) {
+                val listDollar = getDollarUseCase.getAllFromDatabase()
+                _getAllDollar.postValue(listDollar)
+            }
+        }
+    }

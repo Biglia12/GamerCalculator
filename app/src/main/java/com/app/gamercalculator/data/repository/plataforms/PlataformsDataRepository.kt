@@ -1,6 +1,7 @@
 package com.app.gamercalculator.data.repository.plataforms
 
 import com.app.gamercalculator.R
+import com.app.gamercalculator.domain.entities.Dollar
 import com.app.gamercalculator.domain.entities.Plataforms
 import com.app.gamercalculator.domain.repository.PlataformsRepository
 import javax.inject.Inject
@@ -25,5 +26,6 @@ class PlataformsDataRepository @Inject constructor() : PlataformsRepository {
          )
          return plataforms
      }
+
 
 }

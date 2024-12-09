@@ -1,6 +1,7 @@
 package com.app.gamercalculator.domain.usecases
 
 import com.app.gamercalculator.R
+import com.app.gamercalculator.domain.entities.Dollar
 import com.app.gamercalculator.domain.entities.Plataforms
 import com.app.gamercalculator.domain.repository.PlataformsRepository
 import javax.inject.Inject

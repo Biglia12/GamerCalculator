@@ -4,6 +4,7 @@ import com.app.gamercalculator.data.repository.dollar.dataSource.DollarCloudData
 import com.app.gamercalculator.data.repository.dollar.dataSource.DollarRoomDataSource
 import com.app.gamercalculator.data.repository.dollar.mappers.DollarDataMapper
 import com.app.gamercalculator.domain.entities.Dollar
+import com.app.gamercalculator.domain.entities.DollarTaxes
 import com.app.gamercalculator.domain.repository.DollarRepository
 import javax.inject.Inject
 
@@ -24,6 +25,15 @@ class DollarDataRepository @Inject constructor(
         val response = roomDataSource.getAll()
         return response.map {dataMapper.map(it)}
 
+    }
+
+    override suspend fun getDollarCard(): Dollar {
+        val data = roomDataSource.getDollarCard()
+        return dataMapper.map(data)
+    }
+    override suspend fun getDollarOfficial(): Dollar {
+        val data = roomDataSource.getDollarCard()
+        return dataMapper.map(data)
     }
 
 }

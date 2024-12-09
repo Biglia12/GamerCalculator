@@ -1,15 +1,12 @@
 package com.app.gamercalculator.ui.views.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gamercalculator.R
 import com.app.gamercalculator.databinding.FragmentHomeBinding
 import com.app.gamercalculator.ui.viewmodel.HomeViewModel
-import com.app.gamercalculator.ui.views.adapters.DollarAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,8 +26,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         viewModel.getDollarFromApi()
         viewModel.getPlataformsDollar()
+
+
+        events()
+
         observers()
 
+    }
+
+    private fun events() {
+
+        binding!!.buttonTarjeta.setOnClickListener{
+            val inputNumber = binding!!.etPriceNumber.text.toString()
+            viewModel.getDollarCard(inputNumber)
+        }
     }
 
 
@@ -39,13 +48,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             //binding?.rvDollar?.text = it.toString()
         }
 
-        viewModel.plataformsDollar.observe( viewLifecycleOwner) {
+        viewModel.dollarCard.observe(viewLifecycleOwner) {
+
+            binding?.resultPriceIva?.text = it.taxIva.toString()
+            binding?.resultPricePais?.text = it.taxCountry.toString()
+            binding?.resultPriceArca?.text = it.taxArca.toString()
+            binding?.totalPrice?.text = it.mountTotal.toString()
 
         }
 
-        viewModel.getAllDollar.observe(viewLifecycleOwner){
-            Log.d("TAG", "observers: $it")
-        }
+
 
 
     }

@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.app.gamercalculator.data.database.entities.DollarVO
-import retrofit2.http.GET
 
 @Dao
 interface DollarDao {
@@ -21,6 +20,9 @@ interface DollarDao {
 
     @Query("SELECT * FROM Dollar_table WHERE house = 'tarjeta'")
     suspend fun getDollarCard(): DollarVO
+
+    @Query("SELECT * FROM Dollar_table WHERE house = 'oficial'")
+    suspend fun getDollarOfficial(): DollarVO
 
     @Query("SELECT * FROM Dollar_table WHERE house = 'cripto'")
     suspend fun getDollarCripto(): DollarVO
