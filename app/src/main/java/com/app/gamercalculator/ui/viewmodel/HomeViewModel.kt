@@ -1,5 +1,6 @@
 package com.app.gamercalculator.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -36,12 +37,21 @@ class HomeViewModel @Inject constructor(
     val dollarCard: LiveData<DollarTaxes> get() = _dollarCard
     private val _dollarCard = MutableLiveData<DollarTaxes>()
 
+    val isLoading: MutableLiveData<Boolean> get() = _isLoading
+    private val _isLoading = MutableLiveData<Boolean>()
 
     fun getDollarFromApi() {
         viewModelScope.launch(Dispatchers.IO) {
-            getDollarUseCase.getDollarFromApi()
-            // val listDollar = getDollarUseCase.getDollar()
-            // _dollar.postValue(listDollar)
+            _isLoading.postValue(true) // Activa el loading
+            val result = kotlin.runCatching {
+                getDollarUseCase.getDollarFromApi() // Llama al caso de uso
+            }
+            _isLoading.postValue(false) // Desactiva el loading
+
+            result.onFailure { exception ->
+                Log.e("Error", "Error fetching dollar: ${exception.message}")
+            }
+
         }
 
     }
@@ -50,6 +60,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val plataformsDollar = getPlataformsUseCase.getPlataformsDollar()
             _plataformsDollar.postValue(plataformsDollar)
+            //  isLoading.postValue(false)
         }
     }
 
@@ -57,26 +68,27 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val data = getDollarUseCase.getDollarCard(inputNnumber)
             _dollarCard.postValue(data)
+            // isLoading.postValue(false)
         }
     }
 
-    fun getDollarMep(){
-       /* viewModelScope.launch(Dispatchers.IO) {
-            val listDollar = getDollarUseCase.getDollarMep()
-            _dollar.postValue(listDollar)
-        }*/
+    fun getDollarMep() {
+        /* viewModelScope.launch(Dispatchers.IO) {
+             val listDollar = getDollarUseCase.getDollarMep()
+             _dollar.postValue(listDollar)
+         }*/
     }
 
     fun getDollarCripto() {
         /*viewModelScope.launch(Dispatchers.IO) {
             val listDollar = getDollarUseCase.getDollarCripto()
             _dollar.postValue(listDollar)*/
-        }
+    }
 
-        fun getAllDollar() {
-            viewModelScope.launch(Dispatchers.IO) {
-                val listDollar = getDollarUseCase.getAllFromDatabase()
-                _getAllDollar.postValue(listDollar)
-            }
+    fun getAllDollar() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val listDollar = getDollarUseCase.getAllFromDatabase()
+            _getAllDollar.postValue(listDollar)
         }
     }
+}

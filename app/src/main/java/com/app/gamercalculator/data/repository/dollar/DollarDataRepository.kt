@@ -16,9 +16,10 @@ class DollarDataRepository @Inject constructor(
 ) : DollarRepository {
 
     override suspend fun getDollarFromApi() { //Obtenemos la lista del servicio y la mapeamos a VO
-        val response = cloudDataSource.getDollar().map { dataMapper.mapToVo(it) }
+        val response = cloudDataSource.getDollar()
+        val data = response.map { dataMapper.mapToVo(it) }
         roomDataSource.cleanTable()
-        roomDataSource.insert(response)
+        roomDataSource.insert(data)
     }
 
     override suspend fun getAllFromDatabase(): List<Dollar> { //tomamos la lista de room y la mapeamos a dollar
