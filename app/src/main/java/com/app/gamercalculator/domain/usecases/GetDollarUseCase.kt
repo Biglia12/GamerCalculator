@@ -26,7 +26,6 @@ class GetDollarUseCase @Inject constructor(
             name = dollarCard.name,
             date = dollarCard.date,
             taxIva =  ruleThreeAndInputNumber(dollarOfficial.buy.toInt(), inputNumber.toInt(), 21),
-            taxCountry = ruleThreeAndInputNumber(dollarOfficial.buy.toInt(),inputNumber.toInt(), 8),
             taxArca = ruleThreeAndInputNumber(dollarOfficial.buy.toInt(),inputNumber.toInt(), 30),
             mountTotal = dollarCard.sell.toInt() * inputNumber.toInt()
         )

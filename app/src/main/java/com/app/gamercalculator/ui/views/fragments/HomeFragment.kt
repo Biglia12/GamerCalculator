@@ -71,14 +71,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewModel.dollarCard.observe(viewLifecycleOwner) {
             val totalPrice = Constants.SYMBOL_DOLLAR + it.mountTotal.toString()
             val resultPriceIva = Constants.SYMBOL_DOLLAR + it.taxIva.toString()
-            val resultPriceCountry = Constants.SYMBOL_DOLLAR + it.taxCountry.toString()
             val resultPriceArca = Constants.SYMBOL_DOLLAR + it.taxArca.toString()
 
-            binding.dateValue?.text = it.date
-            binding.resultPriceIva?.text = resultPriceIva
-            binding?.resultPricePais?.text = resultPriceCountry
-            binding?.resultPriceArca?.text = resultPriceArca
-            binding?.totalPrice?.text = totalPrice
+            binding.dateValue.text = it.date
+            binding.resultPriceIva.text = resultPriceIva
+            binding.resultPriceArca.text = resultPriceArca
+            binding.totalPrice.text = totalPrice
 
         }
 
