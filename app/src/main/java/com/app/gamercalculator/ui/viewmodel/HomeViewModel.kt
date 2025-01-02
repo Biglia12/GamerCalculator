@@ -64,9 +64,9 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getDollarCard(inputNnumber: String) {
+    fun getDollarCardDigital(inputNumber: String, isDollarChecked: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-            val data = getDollarUseCase.getDollarCard(inputNnumber)
+            val data = getDollarUseCase.getDollarCardDigital(inputNumber, isDollarChecked)
             _dollarCard.postValue(data)
             // isLoading.postValue(false)
         }

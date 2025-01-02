@@ -45,17 +45,43 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun events() {
 
-        binding!!.buttonTarjeta.setOnClickListener {
-            if (binding.rdDollar.isChecked) {
+        var isDollarChecked: Boolean = false
+
+        binding.rdDollar.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                isDollarChecked = true
+                binding.rdPesos.isChecked = false
+            }
+        }
+
+        binding.rdPesos.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                isDollarChecked = false
                 binding.rdDollar.isChecked = false
             }
-            if (binding.rdPesos.isChecked) {
-                binding.rdPesos.isChecked = false
-
-            }
-            val inputNumber = binding.etPriceNumber.text.toString()
-            viewModel.getDollarCard(inputNumber)
         }
+
+
+        binding.buttonTarjeta.setOnClickListener {
+            val inputNumber: String = binding.etPriceNumber.text.toString()
+            val number = inputNumber.ifEmpty { "0" }
+
+            viewModel.getDollarCardDigital(number, isDollarChecked)
+        }
+
+        binding.buttonDolarmep.setOnClickListener {
+            val inputNumber: String = binding.etPriceNumber.text.toString()
+            val number = inputNumber.ifEmpty { "0" }
+           // viewModel.getDollarCard(number)
+        }
+
+        binding.buttonCripto.setOnClickListener {
+            val inputNumber: String = binding.etPriceNumber.text.toString()
+            val number = inputNumber.ifEmpty { "0" }
+           // viewModel.getDollarCard(number)
+        }
+
+
     }
 
 

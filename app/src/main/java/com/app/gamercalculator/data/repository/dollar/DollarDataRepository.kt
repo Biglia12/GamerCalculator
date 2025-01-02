@@ -33,7 +33,7 @@ class DollarDataRepository @Inject constructor(
         return dataMapper.map(data)
     }
     override suspend fun getDollarOfficial(): Dollar {
-        val data = roomDataSource.getDollarCard()
+        val data = roomDataSource.getDollarOfficial()
         return dataMapper.map(data)
     }
 

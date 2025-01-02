@@ -14,6 +14,10 @@ class DollarRoomDataSource @Inject constructor(private val db: AppDataBase) {
         return db.dollarDao().getAll()
     }
 
+    suspend fun getDollarOfficial(): DollarVO{
+        return db.dollarDao().getDollarOfficial()
+    }
+
     suspend fun getDollarCard(): DollarVO{
         return db.dollarDao().getDollarCard()
     }
