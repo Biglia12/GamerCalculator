@@ -36,6 +36,24 @@ class GetDollarUseCase @Inject constructor(
         return dollarCardWitTaxes
     }
 
+    suspend fun getDollarMep(inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
+        val dollarMep = repository.getDollarMep()
+        val countDollarMep: Int = inputNumber.toInt() * dollarMep.sell.toInt()
+        val countDollarPesos: Int = inputNumber.toInt() / dollarMep.sell.toInt()
+        val dollarMepWitTaxes = DollarTaxes(
+            name = dollarMep.name,
+            date = dollarMep.date,
+            taxIva = 0,
+            taxArca = 0,
+            mountTotal = if (isDollarChecked) {
+                countDollarMep
+            } else {
+                countDollarPesos
+            }
+        )
+        return dollarMepWitTaxes
+    }
+
     suspend fun getDollarCardDigital(inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
         val dollarOfficial = repository.getDollarOfficial()
         val taxIvaDollar = ruleThreeAndInputNumber(dollarOfficial.sell.toInt(), inputNumber.toInt(), 21)

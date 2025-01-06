@@ -23,7 +23,7 @@ class DollarRoomDataSource @Inject constructor(private val db: AppDataBase) {
     }
 
     suspend fun getDollarMep(): DollarVO{
-        return db.dollarDao().getDollarOfficial()
+        return db.dollarDao().getDollarMep()
     }
 
     suspend fun cleanTable(){

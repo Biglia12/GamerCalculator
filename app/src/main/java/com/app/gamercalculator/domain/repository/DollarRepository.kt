@@ -7,5 +7,6 @@ interface DollarRepository {
     suspend fun getDollarFromApi()
     suspend fun getAllFromDatabase(): List<Dollar>
     suspend fun getDollarCard(): Dollar
+    suspend fun getDollarMep(): Dollar
     suspend fun getDollarOfficial(): Dollar
 }

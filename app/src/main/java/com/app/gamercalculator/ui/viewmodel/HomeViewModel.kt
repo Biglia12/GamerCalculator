@@ -37,6 +37,9 @@ class HomeViewModel @Inject constructor(
     val dollarCard: LiveData<DollarTaxes> get() = _dollarCard
     private val _dollarCard = MutableLiveData<DollarTaxes>()
 
+    val dollarMep: LiveData<DollarTaxes> get() = _dollarMep
+    private val _dollarMep = MutableLiveData<DollarTaxes>()
+
     val isLoading: MutableLiveData<Boolean> get() = _isLoading
     private val _isLoading = MutableLiveData<Boolean>()
 
@@ -72,11 +75,11 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getDollarMep() {
-        /* viewModelScope.launch(Dispatchers.IO) {
-             val listDollar = getDollarUseCase.getDollarMep()
-             _dollar.postValue(listDollar)
-         }*/
+    fun getDollarMep(inputNumber: String, isDollarChecked: Boolean) {
+         viewModelScope.launch(Dispatchers.IO) {
+             val listDollar = getDollarUseCase.getDollarMep(inputNumber, isDollarChecked)
+             _dollarMep.postValue(listDollar)
+         }
     }
 
     fun getDollarCripto() {
