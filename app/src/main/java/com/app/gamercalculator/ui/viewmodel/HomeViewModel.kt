@@ -40,6 +40,9 @@ class HomeViewModel @Inject constructor(
     val dollarMep: LiveData<DollarTaxes> get() = _dollarMep
     private val _dollarMep = MutableLiveData<DollarTaxes>()
 
+    val dollarCripto: LiveData<DollarTaxes> get() = _dollarCripto
+    private val _dollarCripto = MutableLiveData<DollarTaxes>()
+
     val isLoading: MutableLiveData<Boolean> get() = _isLoading
     private val _isLoading = MutableLiveData<Boolean>()
 
@@ -69,23 +72,24 @@ class HomeViewModel @Inject constructor(
 
     fun getDollarCardDigital(inputNumber: String, isDollarChecked: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
-            val data = getDollarUseCase.getDollarCardDigital(inputNumber, isDollarChecked)
-            _dollarCard.postValue(data)
+            val dollarCard = getDollarUseCase.getDollarCardDigital(inputNumber, isDollarChecked)
+            _dollarCard.postValue(dollarCard)
             // isLoading.postValue(false)
         }
     }
 
     fun getDollarMep(inputNumber: String, isDollarChecked: Boolean) {
          viewModelScope.launch(Dispatchers.IO) {
-             val listDollar = getDollarUseCase.getDollarMep(inputNumber, isDollarChecked)
-             _dollarMep.postValue(listDollar)
+             val dollarMep = getDollarUseCase.getDollarMep(inputNumber, isDollarChecked)
+             _dollarMep.postValue(dollarMep)
          }
     }
 
-    fun getDollarCripto() {
-        /*viewModelScope.launch(Dispatchers.IO) {
-            val listDollar = getDollarUseCase.getDollarCripto()
-            _dollar.postValue(listDollar)*/
+    fun getDollarCripto(inputNumber: String, isDollarChecked: Boolean) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val dollarCripto = getDollarUseCase.getDollarCripto(inputNumber, isDollarChecked)
+            _dollarCripto.postValue(dollarCripto)
+        }
     }
 
     fun getAllDollar() {

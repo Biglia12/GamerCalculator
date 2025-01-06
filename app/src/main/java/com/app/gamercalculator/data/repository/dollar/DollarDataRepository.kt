@@ -25,7 +25,6 @@ class DollarDataRepository @Inject constructor(
     override suspend fun getAllFromDatabase(): List<Dollar> { //tomamos la lista de room y la mapeamos a dollar
         val response = roomDataSource.getAll()
         return response.map {dataMapper.map(it)}
-
     }
 
     override suspend fun getDollarCard(): Dollar {
@@ -38,9 +37,16 @@ class DollarDataRepository @Inject constructor(
         return dataMapper.map(data)
     }
 
+    override suspend fun getDollarCripto(): Dollar {
+        val data = roomDataSource.getDollarCripto()
+        return dataMapper.map(data)
+    }
+
     override suspend fun getDollarOfficial(): Dollar {
         val data = roomDataSource.getDollarOfficial()
         return dataMapper.map(data)
     }
+
+
 
 }

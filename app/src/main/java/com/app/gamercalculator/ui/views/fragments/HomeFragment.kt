@@ -37,15 +37,39 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             viewModel.getDollarFromApi()
             //viewModel.getPlataformsDollar()
         }
-
-
         events()
-
         observers()
 
     }
 
     private fun events() {
+        radioButton()
+        buttonListeners()
+
+    }
+
+    private fun buttonListeners() {
+        binding.buttonTarjeta.setOnClickListener {
+            dollarCardDigital()
+            changedDollar = "tarjeta"
+        }
+
+        binding.buttonDolarmep.setOnClickListener {
+            dollarMep()
+            changedDollar = "mep"
+        }
+
+        binding.buttonCripto.setOnClickListener {
+            changedDollar = "cripto"
+            dollarCripto()
+        }
+    }
+
+    private fun radioButton() {
+        binding.rdDollar.isChecked = true
+        isDollarChecked = true
+        changedDollar()
+
         binding.rdDollar.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 isDollarChecked = true
@@ -53,7 +77,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 changedDollar()
             }
         }
-
         binding.rdPesos.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 isDollarChecked = false
@@ -61,24 +84,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 changedDollar()
             }
         }
-
-
-        binding.buttonTarjeta.setOnClickListener {
-            dollarCardDigital()
-            changedDollar = "Tarjeta"
-        }
-
-        binding.buttonDolarmep.setOnClickListener {
-            dollarMep()
-            changedDollar = "Mep"
-        }
-
-        binding.buttonCripto.setOnClickListener {
-            changedDollar = "Cripto"
-            dollarCripto()
-        }
-
-
     }
 
 
@@ -87,26 +92,25 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             binding.containerLoading.visibility = if (it) View.VISIBLE else View.GONE
         }
 
-        viewModel.dollar.observe(viewLifecycleOwner) {
-            //binding?.rvDollar?.text = it.toString()
-        }
-
-
         viewModel.dollarCard.observe(viewLifecycleOwner) {
             setDollars(it)
-
         }
 
         viewModel.dollarMep.observe(viewLifecycleOwner) {
             setDollars(it)
         }
+
+        viewModel.dollarCripto.observe(viewLifecycleOwner) {
+            setDollars(it)
+        }
+
     }
 
     private fun changedDollar() {
         when (changedDollar) {
-            "Tarjeta" -> dollarCardDigital()
-            "Mep" -> dollarMep()
-            "Cripto" -> dollarCripto()
+            "tarjeta" -> dollarCardDigital()
+            "mep" -> dollarMep()
+            "cripto" -> dollarCripto()
             else -> {}
         }
     }
@@ -125,7 +129,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun dollarCardDigital() {
         val inputNumber: String = binding.etPriceNumber.text.toString()
         val number = inputNumber.ifEmpty { "0" }
-
         viewModel.getDollarCardDigital(number, isDollarChecked)
     }
 
@@ -138,7 +141,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun dollarCripto() {
         val inputNumber: String = binding.etPriceNumber.text.toString()
         val number = inputNumber.ifEmpty { "0" }
-        // viewModel.getDollarCard(number)
+        viewModel.getDollarCripto(number, isDollarChecked)
     }
 
 }
