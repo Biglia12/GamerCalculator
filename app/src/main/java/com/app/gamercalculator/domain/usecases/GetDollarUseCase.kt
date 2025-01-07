@@ -3,6 +3,9 @@ package com.app.gamercalculator.domain.usecases
 import com.app.gamercalculator.domain.entities.Dollar
 import com.app.gamercalculator.domain.entities.DollarTaxes
 import com.app.gamercalculator.domain.repository.DollarRepository
+import com.app.gamercalculator.domain.utils.DateUtils
+import java.text.SimpleDateFormat
+import java.util.Locale
 import javax.inject.Inject
 
 class GetDollarUseCase @Inject constructor(
@@ -42,7 +45,7 @@ class GetDollarUseCase @Inject constructor(
         val countDollarPesos: Double = inputNumber.toDouble() / dollarMep.sell
         val dollarMepWitTaxes = DollarTaxes(
             name = dollarMep.name,
-            date = dollarMep.date,
+            date = formateDate(dollarMep.date),
             taxIva = 0.0,
             taxArca = 0.0,
             mountTotal = if (isDollarChecked) {
@@ -60,7 +63,7 @@ class GetDollarUseCase @Inject constructor(
         val countPesosCripto: Double = inputNumber.toDouble() / dollarCripto.sell
         val dollarCriptoWitTaxes = DollarTaxes(
             name = dollarCripto.name,
-            date = dollarCripto.date,
+            date = formateDate(dollarCripto.date),
             taxIva = 0.0,
             taxArca = 0.0,
             mountTotal = if (isDollarChecked) {
@@ -85,7 +88,7 @@ class GetDollarUseCase @Inject constructor(
 
         val dollarCardWitTaxes = DollarTaxes(
             name = dollarOfficial.name,
-            date = dollarOfficial.date,
+            date = formateDate(dollarOfficial.date),
             taxIva = if (isDollarChecked) taxIvaDollar else taxIvaPesos,
             taxArca = if (isDollarChecked) taxArcaDollar else taxArcaPesos,
             mountTotal = if (isDollarChecked) {
@@ -95,6 +98,10 @@ class GetDollarUseCase @Inject constructor(
             }
         )
         return dollarCardWitTaxes
+    }
+
+    private fun formateDate(date: String): String {
+        return DateUtils.formatTimeZ(date)
     }
 
     private fun ruleThreeAndInputNumber(dollar: Double, inputNumber: Double, tax: Int): Double {
