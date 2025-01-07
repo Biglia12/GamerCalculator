@@ -4,6 +4,9 @@ import com.app.gamercalculator.domain.entities.Dollar
 import com.app.gamercalculator.domain.entities.DollarTaxes
 import com.app.gamercalculator.domain.repository.DollarRepository
 import com.app.gamercalculator.domain.utils.DateUtils
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Locale
 import javax.inject.Inject
@@ -31,9 +34,9 @@ class GetDollarUseCase @Inject constructor(
             taxIva = ruleThreeAndInputNumber(dollarOfficial.buy, inputNumber.toDouble(), 21),
             taxArca = ruleThreeAndInputNumber(dollarOfficial.buy, inputNumber.toDouble(), 30),
             mountTotal = if (isDollarChecked) {
-                dollarCard.sell.toInt() * inputNumber.toDouble()
+                formatMount(dollarCard.sell.toInt() * inputNumber.toDouble())
             } else {
-                dollarCard.sell.toInt() + inputNumber.toDouble()
+                formatMount(dollarCard.sell.toInt() + inputNumber.toDouble())
             }
         )
         return dollarCardWitTaxes
@@ -41,8 +44,8 @@ class GetDollarUseCase @Inject constructor(
 
     suspend fun getDollarMep(inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
         val dollarMep = repository.getDollarMep()
-        val countDollarMep: Double = inputNumber.toDouble() * dollarMep.sell
-        val countDollarPesos: Double = inputNumber.toDouble() / dollarMep.sell
+        val countDollarMep = formatMount(inputNumber.toDouble() * dollarMep.sell)
+        val countDollarPesos = formatMount(inputNumber.toDouble() / dollarMep.sell)
         val dollarMepWitTaxes = DollarTaxes(
             name = dollarMep.name,
             date = formateDate(dollarMep.date),
@@ -59,8 +62,8 @@ class GetDollarUseCase @Inject constructor(
 
     suspend fun getDollarCripto (inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
         val dollarCripto = repository.getDollarCripto()
-        val countDollarCripto: Double = inputNumber.toDouble() * dollarCripto.sell
-        val countPesosCripto: Double = inputNumber.toDouble() / dollarCripto.sell
+        val countDollarCripto = formatMount(inputNumber.toDouble() * dollarCripto.sell)
+        val countPesosCripto = formatMount(inputNumber.toDouble() / dollarCripto.sell)
         val dollarCriptoWitTaxes = DollarTaxes(
             name = dollarCripto.name,
             date = formateDate(dollarCripto.date),
@@ -80,11 +83,11 @@ class GetDollarUseCase @Inject constructor(
         val dollarOfficial = repository.getDollarOfficial()
         val taxIvaDollar = ruleThreeAndInputNumber(dollarOfficial.sell, inputNumber.toDouble(), 21)
         val taxArcaDollar = ruleThreeAndInputNumber(dollarOfficial.sell, inputNumber.toDouble(), 30)
-        val sumTaxesDollar = taxIvaDollar + taxArcaDollar + dollarOfficial.sell * inputNumber.toDouble()
+        val sumTaxesDollar = formatMount(taxIvaDollar + taxArcaDollar + dollarOfficial.sell * inputNumber.toDouble())
 
         val taxIvaPesos = divideInputNumberTax(inputNumber.toDouble(), 21)
         val taxArcaPesos = divideInputNumberTax(inputNumber.toDouble(), 30)
-        val sumTaxesPesos = taxIvaPesos + taxArcaPesos + inputNumber.toDouble()
+        val sumTaxesPesos = formatMount(taxIvaPesos + taxArcaPesos + inputNumber.toDouble())
 
         val dollarCardWitTaxes = DollarTaxes(
             name = dollarOfficial.name,
@@ -111,6 +114,13 @@ class GetDollarUseCase @Inject constructor(
 
     private fun divideInputNumberTax( inputNumber: Double, taxArca: Int): Double {
         return (inputNumber * taxArca) / 100
+    }
+
+    private fun formatMount(value: Double): String {
+        val formatter = NumberFormat.getNumberInstance(Locale("es"))
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+        return formatter.format(value)
     }
 
 }

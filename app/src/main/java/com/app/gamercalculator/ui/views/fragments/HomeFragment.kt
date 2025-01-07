@@ -59,7 +59,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 // Aquí se ejecuta cada vez que el texto cambia
-                inputNumber = if (s.isNullOrEmpty()) "0.0" else s.toString()
+                inputNumber = if (s.isNullOrEmpty()) "0" else s.toString()
                 when (changedDollar) {
                     "tarjeta" -> dollarCardDigital(inputNumber)
                     "mep" -> dollarMep(inputNumber)
@@ -77,18 +77,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun buttonListeners() {
         binding.buttonTarjeta.setOnClickListener {
-            dollarCardDigital(binding.etPriceNumber.text.toString().ifEmpty { "0.0" })
+            dollarCardDigital(binding.etPriceNumber.text.toString().ifEmpty { "0" })
             changedDollar = "tarjeta"
         }
 
         binding.buttonDolarmep.setOnClickListener {
-            dollarMep(binding.etPriceNumber.text.toString().ifEmpty { "0.0" })
+            dollarMep(binding.etPriceNumber.text.toString().ifEmpty { "0" })
             changedDollar = "mep"
         }
 
         binding.buttonCripto.setOnClickListener {
             changedDollar = "cripto"
-            dollarCripto(binding.etPriceNumber.text.toString().ifEmpty { "0.0" })
+            dollarCripto(binding.etPriceNumber.text.toString().ifEmpty { "0" })
         }
     }
 
