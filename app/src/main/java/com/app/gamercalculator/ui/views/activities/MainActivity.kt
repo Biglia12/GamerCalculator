@@ -24,30 +24,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.container_nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        NavigationUI.setupWithNavController(
-            binding.bottomsNavigationView, navController
-        )
 
-        binding.bottomsNavigationView.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.homeFragment -> {
-                    navController.navigate(R.id.homeFragment)
-                    true
-                }
-
-                R.id.subscriptionsFragment -> {
-                    navController.navigate(R.id.subscriptionsFragment)
-                    true
-                }
-
-                R.id.calculatorFragment -> {
-                    navController.navigate(R.id.calculatorFragment)
-                    true
-                }
-
-                else -> false
-            }
-        }
 
     }
 }
