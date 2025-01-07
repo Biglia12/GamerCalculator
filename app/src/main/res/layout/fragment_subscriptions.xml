@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:textColor="@color/black"
-                    android:text="Calculadora de Gamer" />
+                    android:text="@string/gamer_calculator" />
 
                 <TextView
                     android:id="@+id/title_prices_dollar"
@@ -41,7 +41,7 @@
                     android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:textColor="@color/black"
-                    android:text="Tiendas en dolares"
+                    android:text="@string/store_in_dollars"
                     android:textSize="20dp" />
 
 
@@ -77,7 +77,7 @@
                     android:layout_marginTop="16dp"
                     android:gravity="center"
                     android:textColor="@color/black"
-                    android:text="Tiendas en pesos"
+                    android:text="@string/store_in_pesos"
                     android:textSize="20dp" />
 
                 <androidx.recyclerview.widget.RecyclerView
