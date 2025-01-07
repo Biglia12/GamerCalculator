@@ -7,5 +7,15 @@
     <string name="gamer_calculator">Claculadora Gamer</string>
     <string name="store_in_dollars">Tienda en Dolares</string>
     <string name="store_in_pesos">Tienda en Pesos</string>
+    <string name="choose_pay">Elegi la manera de pagar en tu plataforma</string>
+    <string name="card">Tarjeta</string>
+    <string name="mep">MEP</string>
+    <string name="crypto">Crypto</string>
+    <string name="ars">ARS</string>
+    <string name="usd">USD</string>
+    <string name="update_date">Fecha de Actualizacion</string>
+    <string name="iva">IVA 21%: </string>
+    <string name="perception">Percepcion RG ARCA 30%:</string>
+    <string name="final_price">Precio Final</string>
 
 </resources>

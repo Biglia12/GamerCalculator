@@ -5,5 +5,15 @@
     <string name="gamer_calculator">Gamer Calculator</string>
     <string name="store_in_dollars">Store in Dollars</string>
     <string name="store_in_pesos">Store in Pesos</string>
+    <string name="choose_pay">Choose The Way to Pay on Your Platform</string>
+    <string name="card">Card</string>
+    <string name="mep">MEP</string>
+    <string name="crypto">Crypto</string>
+    <string name="ars">ARS</string>
+    <string name="usd">USD</string>
+    <string name="update_date">Update Date</string>
+    <string name="iva">IVA 21%: </string>
+    <string name="perception">RG ARCA Perception 30%:</string>
+    <string name="final_price">Final Price</string>
 
 </resources>
