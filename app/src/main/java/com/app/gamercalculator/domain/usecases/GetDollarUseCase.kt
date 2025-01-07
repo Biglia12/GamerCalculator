@@ -25,12 +25,12 @@ class GetDollarUseCase @Inject constructor(
         val dollarCardWitTaxes = DollarTaxes(
             name = dollarCard.name,
             date = dollarCard.date,
-            taxIva = ruleThreeAndInputNumber(dollarOfficial.buy.toInt(), inputNumber.toInt(), 21),
-            taxArca = ruleThreeAndInputNumber(dollarOfficial.buy.toInt(), inputNumber.toInt(), 30),
+            taxIva = ruleThreeAndInputNumber(dollarOfficial.buy, inputNumber.toDouble(), 21),
+            taxArca = ruleThreeAndInputNumber(dollarOfficial.buy, inputNumber.toDouble(), 30),
             mountTotal = if (isDollarChecked) {
-                dollarCard.sell.toInt() * inputNumber.toInt()
+                dollarCard.sell.toInt() * inputNumber.toDouble()
             } else {
-                dollarCard.sell.toInt() + inputNumber.toInt()
+                dollarCard.sell.toInt() + inputNumber.toDouble()
             }
         )
         return dollarCardWitTaxes
@@ -38,13 +38,13 @@ class GetDollarUseCase @Inject constructor(
 
     suspend fun getDollarMep(inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
         val dollarMep = repository.getDollarMep()
-        val countDollarMep: Int = inputNumber.toInt() * dollarMep.sell.toInt()
-        val countDollarPesos: Int = inputNumber.toInt() / dollarMep.sell.toInt()
+        val countDollarMep: Double = inputNumber.toDouble() * dollarMep.sell
+        val countDollarPesos: Double = inputNumber.toDouble() / dollarMep.sell
         val dollarMepWitTaxes = DollarTaxes(
             name = dollarMep.name,
             date = dollarMep.date,
-            taxIva = 0,
-            taxArca = 0,
+            taxIva = 0.0,
+            taxArca = 0.0,
             mountTotal = if (isDollarChecked) {
                 countDollarMep
             } else {
@@ -56,13 +56,13 @@ class GetDollarUseCase @Inject constructor(
 
     suspend fun getDollarCripto (inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
         val dollarCripto = repository.getDollarCripto()
-        val countDollarCripto: Int = inputNumber.toInt() * dollarCripto.sell.toInt()
-        val countPesosCripto: Int = inputNumber.toInt() / dollarCripto.sell.toInt()
+        val countDollarCripto: Double = inputNumber.toDouble() * dollarCripto.sell
+        val countPesosCripto: Double = inputNumber.toDouble() / dollarCripto.sell
         val dollarCriptoWitTaxes = DollarTaxes(
             name = dollarCripto.name,
             date = dollarCripto.date,
-            taxIva = 0,
-            taxArca = 0,
+            taxIva = 0.0,
+            taxArca = 0.0,
             mountTotal = if (isDollarChecked) {
                 countDollarCripto
             } else {
@@ -75,13 +75,13 @@ class GetDollarUseCase @Inject constructor(
 
     suspend fun getDollarCardDigital(inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
         val dollarOfficial = repository.getDollarOfficial()
-        val taxIvaDollar = ruleThreeAndInputNumber(dollarOfficial.sell.toInt(), inputNumber.toInt(), 21)
-        val taxArcaDollar = ruleThreeAndInputNumber(dollarOfficial.sell.toInt(), inputNumber.toInt(), 30)
-        val sumTaxesDollar = taxIvaDollar + taxArcaDollar + dollarOfficial.sell.toInt() * inputNumber.toInt()
+        val taxIvaDollar = ruleThreeAndInputNumber(dollarOfficial.sell, inputNumber.toDouble(), 21)
+        val taxArcaDollar = ruleThreeAndInputNumber(dollarOfficial.sell, inputNumber.toDouble(), 30)
+        val sumTaxesDollar = taxIvaDollar + taxArcaDollar + dollarOfficial.sell * inputNumber.toDouble()
 
-        val taxIvaPesos = divideInputNumberTax(inputNumber.toInt(), 21)
-        val taxArcaPesos = divideInputNumberTax(inputNumber.toInt(), 30)
-        val sumTaxesPesos = taxIvaPesos + taxArcaPesos + inputNumber.toInt()
+        val taxIvaPesos = divideInputNumberTax(inputNumber.toDouble(), 21)
+        val taxArcaPesos = divideInputNumberTax(inputNumber.toDouble(), 30)
+        val sumTaxesPesos = taxIvaPesos + taxArcaPesos + inputNumber.toDouble()
 
         val dollarCardWitTaxes = DollarTaxes(
             name = dollarOfficial.name,
@@ -97,12 +97,12 @@ class GetDollarUseCase @Inject constructor(
         return dollarCardWitTaxes
     }
 
-    private fun ruleThreeAndInputNumber(dollar: Int, inputNumber: Int, tax: Int): Int {
+    private fun ruleThreeAndInputNumber(dollar: Double, inputNumber: Double, tax: Int): Double {
         val dollarInputNumber = dollar * inputNumber
         return (dollarInputNumber * tax) / 100
     }
 
-    private fun divideInputNumberTax( inputNumber: Int, taxArca: Int): Int {
+    private fun divideInputNumberTax( inputNumber: Double, taxArca: Int): Double {
         return (inputNumber * taxArca) / 100
     }
 
