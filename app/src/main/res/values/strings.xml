@@ -11,9 +11,9 @@
     <string name="crypto">Crypto</string>
     <string name="ars">ARS</string>
     <string name="usd">USD</string>
-    <string name="update_date">Update Date</string>
+    <string name="update_date">Update Date:</string>
     <string name="iva">IVA 21%: </string>
     <string name="perception">RG ARCA Perception 30%:</string>
-    <string name="final_price">Final Price</string>
+    <string name="final_price">Final Price:</string>
 
 </resources>
