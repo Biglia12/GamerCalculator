@@ -1,9 +1,12 @@
 package com.app.gamercalculator.ui.views.fragments
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -26,6 +29,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private var isDollarChecked: Boolean = true
     private var changedDollar: String? = ""
     private var inputNumber: String = ""
+    private var selectedButton: View? = null // Variable global a nivel de la clase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +44,26 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             viewModel.getDollarFromApi()
             //viewModel.getPlataformsDollar()
         }
+        restoreButtonState()
         events()
         observers()
 
+    }
+
+    private fun restoreButtonState() {
+        when (viewModel.selectedDollarType.value) {
+            "tarjeta" -> {
+                binding.buttonTarjeta.setBackgroundColor(Color.RED)
+            }
+
+            "mep" -> {
+                binding.buttonDolarmep.setBackgroundColor(Color.RED)
+            }
+
+            "cripto" -> {
+                binding.buttonCripto.setBackgroundColor(Color.RED)
+            }
+        }
     }
 
     private fun events() {
@@ -83,12 +104,31 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         setupButton(binding.buttonCripto, "cripto") { dollarCripto(it) }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupButton(button: View, dollarType: String, action: (String) -> Unit) {
+        val originalColor = button.backgroundTintList?.defaultColor ?: Color.TRANSPARENT
+
+        // Configurar el evento de click
         button.setOnClickListener {
             val input = binding.etPriceNumber.text.toString().ifEmpty { "0" }
             changedDollar = dollarType
             action(input)
+
+            // Guardar el tipo de dólar seleccionado en el ViewModel
+            viewModel.selectedDollarType.value = dollarType
+
+            // Restaurar el color original del botón previamente seleccionado
+            resetButtonColors()
+
+            // Cambiar el color del botón presionado
+            button.setBackgroundColor(Color.RED)
         }
+    }
+
+    private fun resetButtonColors() {
+        binding.buttonTarjeta.setBackgroundColor(Color.TRANSPARENT)
+        binding.buttonDolarmep.setBackgroundColor(Color.TRANSPARENT)
+        binding.buttonCripto.setBackgroundColor(Color.TRANSPARENT)
     }
 
     private fun radioButton() {

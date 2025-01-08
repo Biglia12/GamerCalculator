@@ -48,6 +48,8 @@ class HomeViewModel @Inject constructor(
 
     private var isDataLoaded = false
 
+    val selectedDollarType: MutableLiveData<String> = MutableLiveData("tarjeta") // Se guarda el estado seleccionado
+
     fun getDollarFromApi() {
         viewModelScope.launch(Dispatchers.IO) {
             if (!isDataLoaded) {
