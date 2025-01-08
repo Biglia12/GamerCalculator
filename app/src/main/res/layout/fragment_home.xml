@@ -4,17 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/prueba"
     tools:context=".ui.views.fragments.HomeFragment">
+
+    <LinearLayout
+        android:id="@+id/app_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/txt_title_choose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_icon_app"/>
+
+        <TextView
+            android:id="@+id/txt_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            android:text="Gamer Calculator"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/txt_title_choose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="25dp"
         android:text="@string/choose_pay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/app_title" />
 
     <LinearLayout
         android:id="@+id/linear_btns_dollar"
@@ -29,6 +61,8 @@
 
         <Button
             android:id="@+id/button_tarjeta"
+            android:background="@drawable/button_rounded"
+            android:textColor="@color/white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -37,6 +71,8 @@
 
         <Button
             android:id="@+id/button_dolarmep"
+            android:background="@drawable/button_rounded"
+            android:textColor="@color/white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -45,6 +81,8 @@
 
         <Button
             android:id="@+id/button_cripto"
+            android:background="@drawable/button_rounded"
+            android:textColor="@color/white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -66,6 +104,7 @@
             android:id="@+id/et_price_number"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:layout_marginStart="4dp"
             android:layout_weight="1"
             android:inputType="number"
@@ -76,6 +115,7 @@
         <RadioButton
             android:id="@+id/rd_dollar"
             android:text="@string/usd"
+            android:textColor="@color/white"
             android:layout_marginEnd="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -83,6 +123,7 @@
         <RadioButton
             android:id="@+id/rd_pesos"
             android:text="@string/ars"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="parent"
@@ -95,6 +136,9 @@
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:text="@string/update_date"
@@ -105,6 +149,8 @@
         android:id="@+id/date_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/date"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,6 +163,9 @@
         android:id="@+id/txt_tax_iva"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:text="@string/iva"
@@ -127,6 +176,8 @@
         android:id="@+id/result_price_iva"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/txt_tax_iva"
         app:layout_constraintStart_toEndOf="@+id/txt_tax_iva"
@@ -138,6 +189,9 @@
         android:id="@+id/txt_tax_arca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:text="@string/perception"
@@ -148,6 +202,8 @@
         android:id="@+id/result_price_arca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/txt_tax_arca"
         app:layout_constraintStart_toEndOf="@+id/txt_tax_arca"
@@ -158,6 +214,9 @@
         android:id="@+id/final_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
         android:text="@string/final_price"
@@ -168,6 +227,8 @@
         android:id="@+id/total_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@color/white"
         android:layout_marginStart="8dp"
         android:text="$0"
         app:layout_constraintBottom_toBottomOf="@+id/final_price"

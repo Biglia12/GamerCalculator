@@ -9,4 +9,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#80747474</color>
     <color name="gray_obscure">#E51C1C38</color>
+
+    <color name="dark_gray">#2C2C2C</color>
+    <color name="light_gray">#E0E0E0</color>
+    <color name="medium_gray">#4F4F4F</color>
+    <color name="yellow">#FFD700</color>
+
+    <color name="prueba">#1f1f3d</color>
+
 </resources>
