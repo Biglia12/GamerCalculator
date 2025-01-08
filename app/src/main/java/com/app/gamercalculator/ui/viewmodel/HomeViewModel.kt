@@ -46,16 +46,22 @@ class HomeViewModel @Inject constructor(
     val isLoading: MutableLiveData<Boolean> get() = _isLoading
     private val _isLoading = MutableLiveData<Boolean>()
 
+    private var isDataLoaded = false
+
     fun getDollarFromApi() {
         viewModelScope.launch(Dispatchers.IO) {
-            _isLoading.postValue(true) // Activa el loading
-            val result = kotlin.runCatching {
-                getDollarUseCase.getDollarFromApi() // Llama al caso de uso
-            }
-            _isLoading.postValue(false) // Desactiva el loading
+            if (!isDataLoaded) {
+                isDataLoaded = true
+                _isLoading.postValue(true) // Activa el loading
+                val result = kotlin.runCatching {
+                    getDollarUseCase.getDollarFromApi() // Llama al caso de uso
+                }
+                _isLoading.postValue(false) // Desactiva el loading
 
-            result.onFailure { exception ->
-                Log.e("Error", "Error fetching dollar: ${exception.message}")
+                result.onFailure { exception ->
+                    Log.e("Error", "Error fetching dollar: ${exception.message}")
+                }
+                Log.i("SuccessHomeViewmodel", "Success fetching dollar")
             }
 
         }
@@ -73,6 +79,7 @@ class HomeViewModel @Inject constructor(
     fun getDollarCardDigital(inputNumber: String, isDollarChecked: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {
             val dollarCard = getDollarUseCase.getDollarCardDigital(inputNumber, isDollarChecked)
+            Log.i("dollarTarjeta", "$inputNumber $dollarCard")
             _dollarCard.postValue(dollarCard)
             // isLoading.postValue(false)
         }
@@ -81,6 +88,7 @@ class HomeViewModel @Inject constructor(
     fun getDollarMep(inputNumber: String, isDollarChecked: Boolean) {
          viewModelScope.launch(Dispatchers.IO) {
              val dollarMep = getDollarUseCase.getDollarMep(inputNumber, isDollarChecked)
+             Log.i("dollarMep", "$inputNumber $dollarMep")
              _dollarMep.postValue(dollarMep)
          }
     }

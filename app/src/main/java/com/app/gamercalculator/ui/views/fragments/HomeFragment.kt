@@ -3,6 +3,7 @@ package com.app.gamercalculator.ui.views.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -22,7 +23,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
-    private var isDollarChecked: Boolean = false
+    private var isDollarChecked: Boolean = true
     private var changedDollar: String? = ""
     private var inputNumber: String = ""
 
@@ -52,7 +53,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun etWatcher() {
-        changedDollar = "tarjeta" // la primera vez se hara el caluclo por dolar tarjeta asi el usuario no presiona los botones y no queda sin hacer una cuenta (Se peude mejorar el codigo aun)
+        //changedDollar = "tarjeta" // la primera vez se hara el caluclo por dolar tarjeta asi el usuario no presiona los botones y no queda sin hacer una cuenta (Se peude mejorar el codigo aun)
         binding.etPriceNumber.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -60,6 +61,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 // Aquí se ejecuta cada vez que el texto cambia
                 inputNumber = if (s.isNullOrEmpty()) "0" else s.toString()
+                Log.i("inputNumber", inputNumber)
                 when (changedDollar) {
                     "tarjeta" -> dollarCardDigital(inputNumber)
                     "mep" -> dollarMep(inputNumber)
@@ -76,26 +78,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
     private fun buttonListeners() {
-        binding.buttonTarjeta.setOnClickListener {
-            dollarCardDigital(binding.etPriceNumber.text.toString().ifEmpty { "0" })
-            changedDollar = "tarjeta"
-        }
+        setupButton(binding.buttonTarjeta, "tarjeta") { dollarCardDigital(it) }
+        setupButton(binding.buttonDolarmep, "mep") { dollarMep(it) }
+        setupButton(binding.buttonCripto, "cripto") { dollarCripto(it) }
+    }
 
-        binding.buttonDolarmep.setOnClickListener {
-            dollarMep(binding.etPriceNumber.text.toString().ifEmpty { "0" })
-            changedDollar = "mep"
-        }
-
-        binding.buttonCripto.setOnClickListener {
-            changedDollar = "cripto"
-            dollarCripto(binding.etPriceNumber.text.toString().ifEmpty { "0" })
+    private fun setupButton(button: View, dollarType: String, action: (String) -> Unit) {
+        button.setOnClickListener {
+            val input = binding.etPriceNumber.text.toString().ifEmpty { "0" }
+            changedDollar = dollarType
+            action(input)
         }
     }
 
     private fun radioButton() {
         binding.rdDollar.isChecked = true
-        isDollarChecked = true
-        changedDollar()
 
         binding.rdDollar.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
@@ -135,7 +132,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun changedDollar() {
         when (changedDollar) {
+            Log.i("changedDollar", binding.etPriceNumber.text.toString()).toString(),
             "tarjeta" -> dollarCardDigital(binding.etPriceNumber.text.toString().ifEmpty { "0" })
+
             "mep" -> dollarMep(binding.etPriceNumber.text.toString().ifEmpty { "0" })
             "cripto" -> dollarCripto(binding.etPriceNumber.text.toString().ifEmpty { "0" })
             else -> {}
