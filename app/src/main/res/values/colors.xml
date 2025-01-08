@@ -15,6 +15,8 @@
     <color name="medium_gray">#4F4F4F</color>
     <color name="yellow">#FFD700</color>
 
+    <color name="primary_color">#4b4b8b</color>
+
     <color name="prueba">#1f1f3d</color>
 
 </resources>

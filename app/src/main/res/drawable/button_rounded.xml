@@ -2,6 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <corners android:radius="60sp"/>
-    <solid android:color="#4b4b8b" />
+    <solid android:color="@drawable/button_selector" />
 
 </shape>

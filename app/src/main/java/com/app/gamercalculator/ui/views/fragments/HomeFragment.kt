@@ -29,7 +29,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private var isDollarChecked: Boolean = true
     private var changedDollar: String? = ""
     private var inputNumber: String = ""
-    private var selectedButton: View? = null // Variable global a nivel de la clase
+    private var firstTimeDollarCard = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,15 +53,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun restoreButtonState() {
         when (viewModel.selectedDollarType.value) {
             "tarjeta" -> {
-                binding.buttonTarjeta.setBackgroundColor(Color.RED)
+                binding.buttonTarjeta.isSelected = true // Marcar como seleccionado
             }
 
             "mep" -> {
-                binding.buttonDolarmep.setBackgroundColor(Color.RED)
+                binding.buttonDolarmep.isSelected = true
             }
 
             "cripto" -> {
-                binding.buttonCripto.setBackgroundColor(Color.RED)
+                binding.buttonCripto.isSelected = true
             }
         }
     }
@@ -74,7 +74,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun etWatcher() {
-        //changedDollar = "tarjeta" // la primera vez se hara el caluclo por dolar tarjeta asi el usuario no presiona los botones y no queda sin hacer una cuenta (Se peude mejorar el codigo aun)
+        if (firstTimeDollarCard) {
+            firstTimeDollarCard = false
+            changedDollar = "tarjeta" // la primera vez se hara el caluclo por dolar tarjeta asi el usuario no presiona los botones y no queda sin hacer una cuenta (Se peude mejorar el codigo aun)
+        }
         binding.etPriceNumber.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
@@ -106,29 +109,23 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun setupButton(button: View, dollarType: String, action: (String) -> Unit) {
-        val originalColor = button.backgroundTintList?.defaultColor ?: Color.TRANSPARENT
-
-        // Configurar el evento de click
         button.setOnClickListener {
             val input = binding.etPriceNumber.text.toString().ifEmpty { "0" }
             changedDollar = dollarType
             action(input)
-
             // Guardar el tipo de dólar seleccionado en el ViewModel
             viewModel.selectedDollarType.value = dollarType
-
             // Restaurar el color original del botón previamente seleccionado
             resetButtonColors()
-
             // Cambiar el color del botón presionado
-            button.setBackgroundColor(Color.RED)
+            button.isSelected = true
         }
     }
 
     private fun resetButtonColors() {
-        binding.buttonTarjeta.setBackgroundColor(Color.TRANSPARENT)
-        binding.buttonDolarmep.setBackgroundColor(Color.TRANSPARENT)
-        binding.buttonCripto.setBackgroundColor(Color.TRANSPARENT)
+        binding.buttonTarjeta.isSelected = false
+        binding.buttonDolarmep.isSelected = false
+        binding.buttonCripto.isSelected = false
     }
 
     private fun radioButton() {
