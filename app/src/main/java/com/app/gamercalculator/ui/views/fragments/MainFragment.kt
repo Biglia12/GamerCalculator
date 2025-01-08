@@ -26,6 +26,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        //https://medium.com/@muhammadd.asadullah/fragment-state-persistence-in-android-jetpack-navigation-d82c87a59fb0
         if (_binding == null) {
             _binding = FragmentMainBinding.inflate(inflater, container, false)
         }
