@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:title="Home"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:title="@string/calculator"
+        android:icon="@drawable/ic_calculator" />
 
     <item
         android:id="@+id/subscriptionsFragment"
-        android:title="Subscriptions"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:title="@string/subscription"
+        android:icon="@drawable/ic_subscription" />
 
     <item
         android:id="@+id/calculatorFragment"
-        android:title="Calculator"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:title="@string/settings"
+        android:icon="@drawable/ic_settings" />
 
 </menu>

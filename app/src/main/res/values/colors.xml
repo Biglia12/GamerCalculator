@@ -8,15 +8,23 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#80747474</color>
-    <color name="gray_obscure">#E51C1C38</color>
+    <color name="gray_obscure">#2A2A31</color>
 
     <color name="dark_gray">#2C2C2C</color>
-    <color name="light_gray">#E0E0E0</color>
+    <color name="light_gray">#928E8E</color>
     <color name="medium_gray">#4F4F4F</color>
     <color name="yellow">#FFD700</color>
 
     <color name="primary_color">#4b4b8b</color>
+    <color name="primary">#2a2a55</color>
 
     <color name="prueba">#1f1f3d</color>
+
+    <color name="prueba2">#1c202c</color>
+    <color name="prueba3">#393e51</color>
+    <color name="prueba4">#242b40</color>
+    <color name="prueba5">#51517d</color>
+
+    <color name="transparent">#00FFFFFF</color>
 
 </resources>
