@@ -11,7 +11,7 @@
         android:id="@+id/app_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/txt_title_choose"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,8 +19,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_icon_app" />
 
@@ -109,10 +109,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
+            android:layout_marginTop="16dp"
             android:hint="@string/hint"
             android:textColorHint="@color/light_gray"
             android:textColor="@color/white"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="@color/prueba5"
+            android:background="@drawable/edit_text"
             android:layout_marginStart="20dp"
             android:layout_weight="1"
             android:inputType="number"
@@ -125,6 +127,7 @@
             android:id="@+id/rd_dollar"
             android:text="@string/usd"
             android:textColor="@color/white"
+            android:layout_marginTop="16dp"
             android:buttonTint="@color/prueba5"
             android:layout_marginEnd="8dp"
             android:layout_width="wrap_content"
@@ -135,6 +138,7 @@
             android:text="@string/ars"
             android:layout_marginEnd="30dp"
             android:textColor="@color/white"
+            android:layout_marginTop="16dp"
             android:buttonTint="@color/prueba5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -176,12 +180,12 @@
         android:id="@+id/txt_tax_iva"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="@color/white"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="24dp"
         android:text="@string/iva"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date" />
 
@@ -196,19 +200,19 @@
         app:layout_constraintBottom_toBottomOf="@+id/txt_tax_iva"
         app:layout_constraintStart_toEndOf="@+id/txt_tax_iva"
         app:layout_constraintTop_toTopOf="@+id/txt_tax_iva"
-        tools:text="10" />
+        android:text="$0.0" />
 
 
     <TextView
         android:id="@+id/txt_tax_arca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:textColor="@color/white"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="24dp"
         android:text="@string/perception"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/result_price_iva" />
 
@@ -223,20 +227,74 @@
         app:layout_constraintBottom_toBottomOf="@+id/txt_tax_arca"
         app:layout_constraintStart_toEndOf="@+id/txt_tax_arca"
         app:layout_constraintTop_toTopOf="@+id/txt_tax_arca"
-        tools:text="10" />
+        android:text="$0.0" />
+
+    <TextView
+        android:id="@+id/txt_sin_impuestos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:text="sin impuestos:"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_tax_arca" />
+
+    <TextView
+        android:id="@+id/total_sin_impuestos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:layout_marginStart="10dp"
+        android:text="$0.0"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_sin_impuestos"
+        app:layout_constraintStart_toEndOf="@+id/txt_sin_impuestos"
+        app:layout_constraintTop_toTopOf="@+id/txt_sin_impuestos" />
+
+
+    <TextView
+        android:id="@+id/txt_impuestos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="impuestos totales:"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_sin_impuestos" />
+
+    <TextView
+        android:id="@+id/total_impuestos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:layout_marginStart="10dp"
+        android:text="$0.0"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_impuestos"
+        app:layout_constraintStart_toEndOf="@+id/txt_impuestos"
+        app:layout_constraintTop_toTopOf="@+id/txt_impuestos" />
+
 
     <TextView
         android:id="@+id/final_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="25sp"
-        android:textColor="@color/white"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="32dp"
         android:text="@string/final_price"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_tax_arca" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_impuestos" />
 
     <TextView
         android:id="@+id/total_price"
@@ -253,7 +311,7 @@
 
     <FrameLayout
         android:id="@+id/container_loading"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -262,7 +320,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
-        android:background="@color/gray"/>
+        android:background="@color/gray" />
 
     <ProgressBar
         android:id="@+id/loading_service"
