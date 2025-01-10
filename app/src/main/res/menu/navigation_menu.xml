@@ -4,16 +4,19 @@
     <item
         android:id="@+id/homeFragment"
         android:title="@string/calculator"
+        android:iconTint="@color/white"
         android:icon="@drawable/ic_calculator" />
 
     <item
         android:id="@+id/subscriptionsFragment"
         android:title="@string/subscription"
+        android:iconTint="@color/white"
         android:icon="@drawable/ic_subscription" />
 
     <item
         android:id="@+id/calculatorFragment"
         android:title="@string/settings"
+        android:iconTint="@color/white"
         android:icon="@drawable/ic_settings" />
 
 </menu>
