@@ -47,7 +47,7 @@ class GetDollarUseCase @Inject constructor(
         val dollarMepWitTaxes = DollarTaxes(
             name = dollarMep.name,
             date = formateDate(dollarMep.date),
-            dollarValue = dollarMep.sell * inputNumber.toDouble(),
+            dollarValue = if (isDollarChecked) dollarMep.sell * inputNumber.toDouble() else inputNumber.toDouble(),
             taxIva = 0.0,
             taxArca = 0.0,
             mountTotal = if (isDollarChecked) countDollarMep else countDollarPesos,
@@ -63,7 +63,7 @@ class GetDollarUseCase @Inject constructor(
         val dollarCriptoWitTaxes = DollarTaxes(
             name = dollarCripto.name,
             date = formateDate(dollarCripto.date),
-            dollarValue = dollarCripto.sell * inputNumber.toDouble(),
+            dollarValue = if (isDollarChecked) dollarCripto.sell * inputNumber.toDouble() else inputNumber.toDouble(),
             taxIva = 0.0,
             taxArca = 0.0,
             mountTotal = if (isDollarChecked) countDollarCripto else countPesosCripto,
@@ -89,7 +89,7 @@ class GetDollarUseCase @Inject constructor(
         val dollarCardWitTaxes = DollarTaxes(
             name = dollarOfficial.name,
             date = formateDate(dollarOfficial.date),
-            dollarValue = dollarOfficial.sell * inputNumber.toDouble(),
+            dollarValue = if (isDollarChecked) dollarOfficial.sell * inputNumber.toDouble() else inputNumber.toDouble(),
             taxIva = if (isDollarChecked) taxIvaDollar else taxIvaPesos,
             taxArca = if (isDollarChecked) taxArcaDollar else taxArcaPesos,
             mountTotal = if (isDollarChecked) sumTaxesDollar else sumTaxesPesos,
