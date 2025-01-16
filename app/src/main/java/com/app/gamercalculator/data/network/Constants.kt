@@ -6,4 +6,6 @@ object Constants {
 
     const val SYMBOL_DOLLAR: String = "$"
 
+    const val SYMBOL_EURO: String = "€"
+
 }

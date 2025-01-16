@@ -10,6 +10,7 @@ import com.app.gamercalculator.domain.entities.Dollar
 import com.app.gamercalculator.domain.entities.DollarTaxes
 import com.app.gamercalculator.domain.entities.Plataforms
 import com.app.gamercalculator.domain.usecases.GetDollarUseCase
+import com.app.gamercalculator.domain.usecases.GetEuroUseCase
 import com.app.gamercalculator.domain.usecases.GetPlataformsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getDollarUseCase: GetDollarUseCase,
+    private val getEuroUseCase: GetEuroUseCase,
     private val getPlataformsUseCase: GetPlataformsUseCase
 ) : ViewModel() {
 
@@ -57,6 +59,7 @@ class HomeViewModel @Inject constructor(
                 _isLoading.postValue(true) // Activa el loading
                 val result = kotlin.runCatching {
                     getDollarUseCase.getDollarFromApi() // Llama al caso de uso
+                    getEuroUseCase.getEuroApi()
                 }
                 _isLoading.postValue(false) // Desactiva el loading
 
@@ -69,6 +72,7 @@ class HomeViewModel @Inject constructor(
         }
 
     }
+
 
     fun getPlataformsDollar() {
         viewModelScope.launch {
