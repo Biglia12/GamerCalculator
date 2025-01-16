@@ -161,7 +161,7 @@
         android:layout_height="260dp"
         android:layout_margin="10dp"
         app:cardBackgroundColor="@color/prueba"
-        app:cardCornerRadius="14dp"
+        app:cardCornerRadius="20dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
