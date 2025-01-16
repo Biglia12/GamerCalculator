@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/prueba2"
     tools:context=".ui.views.fragments.SubscriptionsFragment">
 
 
@@ -11,7 +12,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:text="@string/gamer_calculator" />
 
                 <TextView
@@ -40,13 +41,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:text="@string/store_in_dollars"
                     android:textSize="20dp" />
 
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
+                    app:cardBackgroundColor="@color/prueba2"
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
                     app:cardCornerRadius="12dp">
@@ -76,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:gravity="center"
-                    android:textColor="@color/black"
+                    android:textColor="@color/white"
                     android:text="@string/store_in_pesos"
                     android:textSize="20dp" />
 
