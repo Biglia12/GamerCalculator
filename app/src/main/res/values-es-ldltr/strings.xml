@@ -20,6 +20,8 @@
     <string name="calculator">Calculadora</string>
     <string name="subscription">Suscripciones</string>
     <string name="settings">Configuracion</string>
+    <string name="total_taxes">Impuestos Totales:</string>
+    <string name="without_taxes">Sin Impuestos:</string>
     <string name="hint">$0.00</string>
 
 </resources>

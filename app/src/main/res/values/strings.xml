@@ -18,6 +18,8 @@
     <string name="calculator">Calculator</string>
     <string name="subscription">Subscription</string>
     <string name="settings">Settings</string>
+    <string name="total_taxes">Total Taxes:</string>
+    <string name="without_taxes">Without Taxes:</string>
     <string name="hint">$0.00</string>
 
 </resources>
