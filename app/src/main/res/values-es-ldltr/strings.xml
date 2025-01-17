@@ -15,11 +15,13 @@
     <string name="usd">USD</string>
     <string name="update_date">Fecha de Actualizacion:</string>
     <string name="iva">IVA 21%: </string>
-    <string name="perception">Percepcion RG ARCA 30%:</string>
+    <string name="perception">RG ARCA 30%:</string>
     <string name="final_price">Precio Final:</string>
     <string name="calculator">Calculadora</string>
     <string name="subscription">Suscripciones</string>
     <string name="settings">Configuracion</string>
+    <string name="total_taxes">Impuestos Totales:</string>
+    <string name="without_taxes">Sin Impuestos:</string>
     <string name="hint">$0.00</string>
 
 </resources>

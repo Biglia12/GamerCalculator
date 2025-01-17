@@ -7,25 +7,40 @@
     android:layout_height="match_parent"
     tools:context=".ui.views.fragments.MainFragment">
 
+    <!-- Toolbar en la parte superior -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:title="@string/app_name"
+        android:background="#F32A3350"
+        app:titleTextColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Contenedor de Fragmentos -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottoms_navigation_view"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/fragment_main_nav_graph" />
+        app:navGraph="@navigation/fragment_main_nav_graph"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/bottoms_navigation_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- BottomNavigationView en la parte inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottoms_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/prueba4"
+        android:background="#F32A3350"
         app:menu="@menu/navigation_menu"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,13 +31,11 @@ class GetDollarUseCase @Inject constructor(
         val dollarCardWitTaxes = DollarTaxes(
             name = dollarCard.name,
             date = dollarCard.date,
+            dollarValue = dollarOfficial.sell * inputNumber.toDouble(),
             taxIva = ruleThreeAndInputNumber(dollarOfficial.buy, inputNumber.toDouble(), 21),
             taxArca = ruleThreeAndInputNumber(dollarOfficial.buy, inputNumber.toDouble(), 30),
-            mountTotal = if (isDollarChecked) {
-                formatMount(dollarCard.sell.toInt() * inputNumber.toDouble())
-            } else {
-                formatMount(dollarCard.sell.toInt() + inputNumber.toDouble())
-            }
+            mountTotal = if (isDollarChecked) formatMount(dollarCard.sell.toInt() * inputNumber.toDouble()) else formatMount(dollarCard.sell.toInt() + inputNumber.toDouble()),
+            0.0.toString()
         )
         return dollarCardWitTaxes
     }
@@ -49,13 +47,11 @@ class GetDollarUseCase @Inject constructor(
         val dollarMepWitTaxes = DollarTaxes(
             name = dollarMep.name,
             date = formateDate(dollarMep.date),
+            dollarValue = if (isDollarChecked) dollarMep.sell * inputNumber.toDouble() else inputNumber.toDouble(),
             taxIva = 0.0,
             taxArca = 0.0,
-            mountTotal = if (isDollarChecked) {
-                countDollarMep
-            } else {
-                countDollarPesos
-            }
+            mountTotal = if (isDollarChecked) countDollarMep else countDollarPesos,
+            0.0.toString()
         )
         return dollarMepWitTaxes
     }
@@ -67,13 +63,11 @@ class GetDollarUseCase @Inject constructor(
         val dollarCriptoWitTaxes = DollarTaxes(
             name = dollarCripto.name,
             date = formateDate(dollarCripto.date),
+            dollarValue = if (isDollarChecked) dollarCripto.sell * inputNumber.toDouble() else inputNumber.toDouble(),
             taxIva = 0.0,
             taxArca = 0.0,
-            mountTotal = if (isDollarChecked) {
-                countDollarCripto
-            } else {
-                countPesosCripto
-            }
+            mountTotal = if (isDollarChecked) countDollarCripto else countPesosCripto,
+            mountTotalTaxes = 0.0.toString()
         )
         return dollarCriptoWitTaxes
     }
@@ -89,16 +83,17 @@ class GetDollarUseCase @Inject constructor(
         val taxArcaPesos = divideInputNumberTax(inputNumber.toDouble(), 30)
         val sumTaxesPesos = formatMount(taxIvaPesos + taxArcaPesos + inputNumber.toDouble())
 
+        val sumTaxesTotalDollar = formatMount(taxArcaDollar + taxIvaDollar)
+        val sumTaxesTotalPesos = formatMount(taxArcaPesos + taxIvaPesos)
+
         val dollarCardWitTaxes = DollarTaxes(
             name = dollarOfficial.name,
             date = formateDate(dollarOfficial.date),
+            dollarValue = if (isDollarChecked) dollarOfficial.sell * inputNumber.toDouble() else inputNumber.toDouble(),
             taxIva = if (isDollarChecked) taxIvaDollar else taxIvaPesos,
             taxArca = if (isDollarChecked) taxArcaDollar else taxArcaPesos,
-            mountTotal = if (isDollarChecked) {
-                sumTaxesDollar
-            } else {
-                sumTaxesPesos
-            }
+            mountTotal = if (isDollarChecked) sumTaxesDollar else sumTaxesPesos,
+            mountTotalTaxes = if (isDollarChecked) sumTaxesTotalDollar else sumTaxesTotalPesos
         )
         return dollarCardWitTaxes
     }
