@@ -31,19 +31,28 @@ class SubscriptionsFragment : Fragment(R.layout.fragment_subscriptions) {
 
        // viewModel.getDollarFromApi()
         viewModel.getPlataformsDollar()
+        viewModel.getPlataform()
+        observers()
 
 
     }
 
     private fun observers() {
+
+        viewModel.plataforms.observe(viewLifecycleOwner){
+            binding?.rvDollarCompanies?.layoutManager = LinearLayoutManager(context)
+            dollarAdapter = DollarAdapter(requireContext(), it)
+            binding?.rvDollarCompanies?.adapter = dollarAdapter
+        }
+
         viewModel.dollar.observe(viewLifecycleOwner) {
             //binding?.rvDollar?.text = it.toString()
         }
 
         viewModel.plataformsDollar.observe( viewLifecycleOwner) {
-            binding?.rvDollarCompanies?.layoutManager = LinearLayoutManager(context)
+            /*binding?.rvDollarCompanies?.layoutManager = LinearLayoutManager(context)
             dollarAdapter = DollarAdapter(requireContext(), it)
-            binding?.rvDollarCompanies?.adapter = dollarAdapter
+            binding?.rvDollarCompanies?.adapter = dollarAdapter*/
             //val adapterActions = DollarAdapter(requireContext(), it)
         }
 

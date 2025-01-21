@@ -1,0 +1,256 @@
+[
+  {
+    "imageName": "ic_ea",
+    "name": "EA Play",
+    "prices": [
+      {
+        "type": "Standard",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 9696
+          },
+          {
+            "period": "Yearly",
+            "price": 64732
+          }
+        ]
+      },
+      {
+        "type": "Pro",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 27502
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imageName": "ic_playstation",
+    "name": "PlayStation Plus",
+    "prices": [
+      {
+        "type": "Deluxe",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 19408
+          },
+          {
+            "period": "Quarterly",
+            "price": 51782
+          },
+          {
+            "period": "Yearly",
+            "price": 173184
+          }
+        ]
+      },
+      {
+        "type": "Extra",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 16980
+          },
+          {
+            "period": "Quarterly",
+            "price": 45307
+          },
+          {
+            "period": "Yearly",
+            "price": 152141
+          }
+        ]
+      },
+      {
+        "type": "Essential",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 11315
+          },
+          {
+            "period": "Quarterly",
+            "price": 27502
+          },
+          {
+            "period": "Yearly",
+            "price": 89012
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imageName": "ic_xbox",
+    "name": "Xbox Game Pass",
+    "prices": [
+      {
+        "type": "PC",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 10708
+          }
+        ]
+      },
+      {
+        "type": "Core",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 9178
+          }
+        ]
+      },
+      {
+        "type": "Standard",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 13768
+          }
+        ]
+      },
+      {
+        "type": "Ultimate",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 16828
+          }
+        ]
+      },
+      {
+        "type": "EA Play Pro",
+        "amounts": [
+          {
+            "period": "Yearly",
+            "price": 194227
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imageName": "ic_nintendo",
+    "name": "Nintendo Switch Online",
+    "prices": [
+      {
+        "type": "Individual",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 5874
+          },
+          {
+            "period": "Quarterly",
+            "price": 11749
+          },
+          {
+            "period": "Yearly",
+            "price": 29405
+          }
+        ]
+      },
+      {
+        "type": "Individual + Expansion Pack",
+        "amounts": [
+          {
+            "period": "Yearly",
+            "price": 73530
+          }
+        ]
+      },
+      {
+        "type": "Familiar",
+        "amounts": [
+          {
+            "period": "Yearly",
+            "price": 51468
+          }
+        ]
+      },
+      {
+        "type": "Familiar + Expansion Pack",
+        "amounts": [
+          {
+            "period": "Yearly",
+            "price": 117655
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imageName": "ic_steam",
+    "name": "GeForce Now",
+    "prices": [
+      {
+        "type": "Day Pass x1",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 5700
+          }
+        ]
+      },
+      {
+        "type": "Day Pass x2",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 11400
+          }
+        ]
+      },
+      {
+        "type": "Day Pass x3",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 17100
+          }
+        ]
+      },
+      {
+        "type": "Priority",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 19000
+          },
+          {
+            "period": "Semiannual",
+            "price": 102600
+          },
+          {
+            "period": "Yearly",
+            "price": 190000
+          }
+        ]
+      },
+      {
+        "type": "Extended Pro",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 38000
+          }
+        ]
+      },
+      {
+        "type": "Extended Ultra",
+        "amounts": [
+          {
+            "period": "Monthly",
+            "price": 76000
+          }
+        ]
+      }
+    ]
+  }
+]

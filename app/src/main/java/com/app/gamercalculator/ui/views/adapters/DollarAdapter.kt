@@ -8,9 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gamercalculator.R
+import com.app.gamercalculator.data.model.Platform
 import com.app.gamercalculator.domain.entities.Plataforms
 
-class DollarAdapter(private val context: Context, private val items: List<Plataforms>) : RecyclerView.Adapter<DollarAdapter.ViewHolder>() {
+class DollarAdapter(private val context: Context, private val items: List<Platform>) : RecyclerView.Adapter<DollarAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.dollar_items, parent, false)
@@ -20,7 +21,7 @@ class DollarAdapter(private val context: Context, private val items: List<Plataf
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.titleCompany.text = item.name
-        holder.imageCompany.setImageResource(item.image)
+        //holder.imageCompany.setImageResource(item.image)
 
     }
 
