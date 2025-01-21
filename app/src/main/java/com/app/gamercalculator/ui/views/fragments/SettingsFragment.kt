@@ -31,7 +31,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun setupVieModel() {
-        viewModel.getSettings()
+        viewModel.getSettings1()
     }
 
     private fun observers() {
