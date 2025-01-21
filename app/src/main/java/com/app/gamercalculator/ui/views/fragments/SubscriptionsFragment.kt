@@ -31,6 +31,7 @@ class SubscriptionsFragment : Fragment(R.layout.fragment_subscriptions) {
 
        // viewModel.getDollarFromApi()
         viewModel.getPlataformsDollar()
+        observers()
 
 
     }
