@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gamercalculator.R
 import com.app.gamercalculator.data.model.Platform
@@ -27,10 +28,11 @@ class SubscriptionsAdapter(private val context: Context, private val items: List
             "drawable",
             context.packageName
         )
-
         holder.imageCompany.setImageResource(resourceId)
 
-        //item.prices.get(0).amounts.get(0).period
+        holder.itemView.setOnClickListener {
+            Toast.makeText(context, item.name, Toast.LENGTH_SHORT).show()
+        }
 
     }
 
