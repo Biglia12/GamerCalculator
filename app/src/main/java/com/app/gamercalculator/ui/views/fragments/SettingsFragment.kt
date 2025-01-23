@@ -42,7 +42,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             }
             Log.i("Settings", settings.toString())
             binding.rvSettings.layoutManager = LinearLayoutManager(requireContext())
-            binding.rvSettings.adapter = SettingsAdapter(settings)
+            binding.rvSettings.adapter = SettingsAdapter(requireContext(),settings)
         }
     }
 

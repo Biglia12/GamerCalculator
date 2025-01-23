@@ -14,9 +14,9 @@ class SettingsDataRepository  @Inject constructor() : SettingsRepository {
             Settings(R.drawable.ic_qr, "qr"),
             Settings(R.drawable.ic_subscription, "rate"),
             Settings(R.drawable.ic_contact, "contact"),
-            Settings(R.drawable.ic_about, "about"),
             Settings(R.drawable.ic_apps, "other_apps"),
             Settings(R.drawable.ic_camera, "announcement"),
+            Settings(R.drawable.ic_about, "about"),
         )
         return settings
     }
