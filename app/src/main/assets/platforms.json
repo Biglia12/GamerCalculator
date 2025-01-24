@@ -22,6 +22,10 @@
           {
             "period": "Subscripción Mensual",
             "price": 27502
+          },
+          {
+            "period": "Subscripción Anual",
+            "price": 194227
           }
         ]
       }
@@ -43,7 +47,7 @@
             "price": 51782
           },
           {
-            "period": "Yearly",
+            "period": "Subscripción Anual",
             "price": 173184
           }
         ]
@@ -101,7 +105,7 @@
         "type": "Core",
         "amounts": [
           {
-            "period": "Subscripción Anual",
+            "period": "Subscripción Mensual",
             "price": 9178
           }
         ]
@@ -121,15 +125,6 @@
           {
             "period": "Subscripción Mensual",
             "price": 16828
-          }
-        ]
-      },
-      {
-        "type": "EA Play Pro",
-        "amounts": [
-          {
-            "period": "Subscripción Anual",
-            "price": 194227
           }
         ]
       }
