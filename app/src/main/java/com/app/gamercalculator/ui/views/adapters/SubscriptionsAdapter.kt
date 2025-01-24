@@ -38,7 +38,6 @@ class SubscriptionsAdapter(private val context: Context, private val items: List
 
         holder.itemView.setOnClickListener {
             showBottomSheet(item)
-            Toast.makeText(context, item.name, Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -53,7 +52,7 @@ class SubscriptionsAdapter(private val context: Context, private val items: List
         bottomSheetRecyclerView.layoutManager = LinearLayoutManager(context)
 
 
-        bottomSheetAdapter = SubscriptionBottomSheetAdapter(context, item)
+        bottomSheetAdapter = SubscriptionBottomSheetAdapter(context, item.prices)
         bottomSheetRecyclerView.adapter = bottomSheetAdapter
         dialog.show()
 

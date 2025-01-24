@@ -7,11 +7,11 @@
         "type": "Standard",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción Mensual",
             "price": 9696
           },
           {
-            "period": "Yearly",
+            "period": "Subscripción Anual",
             "price": 64732
           }
         ]
@@ -20,7 +20,7 @@
         "type": "Pro",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción Mensual",
             "price": 27502
           }
         ]
@@ -35,11 +35,11 @@
         "type": "Deluxe",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción Mensual",
             "price": 19408
           },
           {
-            "period": "Quarterly",
+            "period": "Subscripción 3 meses",
             "price": 51782
           },
           {
@@ -52,15 +52,15 @@
         "type": "Extra",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción Mensual",
             "price": 16980
           },
           {
-            "period": "Quarterly",
+            "period": "Subscripción 3 meses",
             "price": 45307
           },
           {
-            "period": "Yearly",
+            "period": "Subscripción Anual",
             "price": 152141
           }
         ]
@@ -69,15 +69,15 @@
         "type": "Essential",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción Mensual",
             "price": 11315
           },
           {
-            "period": "Quarterly",
+            "period": "Subscripción 3 meses",
             "price": 27502
           },
           {
-            "period": "Yearly",
+            "period": "Subscripción Anual",
             "price": 89012
           }
         ]
@@ -92,7 +92,7 @@
         "type": "PC",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción Mensual",
             "price": 10708
           }
         ]
@@ -101,7 +101,7 @@
         "type": "Core",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción Anual",
             "price": 9178
           }
         ]
@@ -110,7 +110,7 @@
         "type": "Standard",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción Mensual",
             "price": 13768
           }
         ]
@@ -119,7 +119,7 @@
         "type": "Ultimate",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción Mensual",
             "price": 16828
           }
         ]
@@ -128,7 +128,7 @@
         "type": "EA Play Pro",
         "amounts": [
           {
-            "period": "Yearly",
+            "period": "Subscripción Anual",
             "price": 194227
           }
         ]
@@ -143,15 +143,15 @@
         "type": "Individual",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción Mensual",
             "price": 5874
           },
           {
-            "period": "Quarterly",
+            "period": "Subscripción 3 meses",
             "price": 11749
           },
           {
-            "period": "Yearly",
+            "period": "Subscripción Anual",
             "price": 29405
           }
         ]
@@ -160,7 +160,7 @@
         "type": "Individual + Expansion Pack",
         "amounts": [
           {
-            "period": "Yearly",
+            "period": "Subscripción Anual",
             "price": 73530
           }
         ]
@@ -169,7 +169,7 @@
         "type": "Familiar",
         "amounts": [
           {
-            "period": "Yearly",
+            "period": "Subscripción Anual",
             "price": 51468
           }
         ]
@@ -178,7 +178,7 @@
         "type": "Familiar + Expansion Pack",
         "amounts": [
           {
-            "period": "Yearly",
+            "period": "Subscripción Anual",
             "price": 117655
           }
         ]
@@ -186,14 +186,14 @@
     ]
   },
   {
-    "imageName": "ic_steam",
+    "imageName": "ic_geforce",
     "name": "GeForce Now",
     "prices": [
       {
         "type": "Day Pass x1",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción 1 dia",
             "price": 5700
           }
         ]
@@ -202,7 +202,7 @@
         "type": "Day Pass x2",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción 2 dias",
             "price": 11400
           }
         ]
@@ -211,7 +211,7 @@
         "type": "Day Pass x3",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción 3 días",
             "price": 17100
           }
         ]
@@ -220,15 +220,15 @@
         "type": "Priority",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción Mensual",
             "price": 19000
           },
           {
-            "period": "Semiannual",
+            "period": "Subscripción 6 meses",
             "price": 102600
           },
           {
-            "period": "Yearly",
+            "period": "Subscripción Anual",
             "price": 190000
           }
         ]
@@ -237,7 +237,7 @@
         "type": "Extended Pro",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción Mensual",
             "price": 38000
           }
         ]
@@ -246,7 +246,7 @@
         "type": "Extended Ultra",
         "amounts": [
           {
-            "period": "Monthly",
+            "period": "Subscripción Mensual",
             "price": 76000
           }
         ]
