@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.app.gamercalculator" />
-                  <option name="mobileSdkAppId" value="1:612604665781:android:08f81d6825bf9be05f83fc" />
-                  <option name="projectId" value="gamercalculator" />
-                  <option name="projectNumber" value="612604665781" />
+                  <option name="appId" value="PLACEHOLDER" />
+                  <option name="mobileSdkAppId" value="" />
+                  <option name="projectId" value="" />
+                  <option name="projectNumber" value="" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
