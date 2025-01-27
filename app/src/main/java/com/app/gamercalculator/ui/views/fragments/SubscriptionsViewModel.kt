@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.gamercalculator.data.model.DollarResponse
+import com.app.gamercalculator.data.model.Platform
 import com.app.gamercalculator.domain.entities.Dollar
 import com.app.gamercalculator.domain.entities.Plataforms
 import com.app.gamercalculator.domain.usecases.GetDollarUseCase
@@ -32,6 +33,9 @@ class SubscriptionsViewModel @Inject constructor(
     val getAllDollar: LiveData<List<Dollar>> get() = _getAllDollar
     private val _getAllDollar = MutableLiveData<List<Dollar>>()
 
+    val plataforms: LiveData<List<Platform>> get() = _plataforms
+    private val _plataforms = MutableLiveData<List<Platform>>()
+
 
     fun getDollarFromApi() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -40,6 +44,13 @@ class SubscriptionsViewModel @Inject constructor(
             // _dollar.postValue(listDollar)
         }
 
+    }
+
+    fun getPlataform() {
+        viewModelScope.launch {
+            val platform = getPlataformsUseCase.getPlataforms()
+            _plataforms.postValue(platform)
+        }
     }
 
     fun getPlataformsDollar() {
