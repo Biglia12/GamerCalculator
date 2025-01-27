@@ -10,6 +10,9 @@
     <color name="gray">#80747474</color>
     <color name="gray_obscure">#2A2A31</color>
 
+    <color name="color_selected">#FFFFFFFF</color>
+    <color name="color_unselected">#928E8E</color>
+
     <color name="dark_gray">#2C2C2C</color>
     <color name="light_gray">#928E8E</color>
     <color name="medium_gray">#4F4F4F</color>

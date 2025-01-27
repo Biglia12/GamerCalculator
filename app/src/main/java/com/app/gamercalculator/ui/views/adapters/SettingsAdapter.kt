@@ -12,12 +12,15 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gamercalculator.R
+import com.app.gamercalculator.data.network.Constants
 import com.app.gamercalculator.databinding.SettingsItemsBinding
 import com.app.gamercalculator.domain.entities.Settings
 
 
 class SettingsAdapter(private val context: Context, private val settingsList: List<Settings>) :
     RecyclerView.Adapter<SettingsViewHolder>() {
+
+    data class App(val name: String, val customLink: String)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SettingsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -70,7 +73,20 @@ class SettingsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                         }
                         .show()
                }
+
+                context.resources.getString(R.string.other_apps) -> {
+                    val url = Constants.URL_PLAYSTORE_APPS
+                    openLink(context,url)
+                }else -> {
+                    Toast.makeText(context,"opcion no definida", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
+
+    private fun openLink(context: Context, url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        context.startActivity(intent)
+    }
+
 }
