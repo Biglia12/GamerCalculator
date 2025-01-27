@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/text_item_name_type_card_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginTop="8dp"
         android:backgroundTint="#E0E0E0"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,9 +19,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="18dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Playsatition Plus" />
+            tools:text="Playstation Plus" />
 
     </androidx.cardview.widget.CardView>
 
