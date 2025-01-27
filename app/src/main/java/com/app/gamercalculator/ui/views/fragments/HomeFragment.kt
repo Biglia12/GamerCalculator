@@ -84,7 +84,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // Aquí se ejecuta cada vez que el texto cambia
                 inputNumber = if (s.isNullOrEmpty()) "0" else s.toString()
                 Log.i("inputNumber", inputNumber)
                 when (changedDollar) {
