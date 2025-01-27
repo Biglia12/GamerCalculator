@@ -7,12 +7,24 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
+    <ImageView
+        android:id="@+id/ic_image_icon_bottom_sheet"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        tools:src="@drawable/ic_playstation"
+        app:layout_constraintBottom_toBottomOf="@+id/tittle_name"
+        app:layout_constraintEnd_toStartOf="@+id/tittle_name"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tittle_name" />
+
     <TextView
         android:id="@+id/tittle_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Subscripción"
+        tools:text="Subscripción"
         android:textColor="@color/black"
         android:textSize="18dp"
         android:textStyle="bold"

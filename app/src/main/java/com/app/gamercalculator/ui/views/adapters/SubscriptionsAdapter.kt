@@ -1,6 +1,7 @@
 package com.app.gamercalculator.ui.views.adapters
 
 import android.content.Context
+import android.provider.ContactsContract.CommonDataKinds.Im
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,6 @@ class SubscriptionsAdapter(private val context: Context, private val items: List
 
     private lateinit var dialog: BottomSheetDialog
     private lateinit var bottomSheetAdapter: SubscriptionBottomSheetAdapter
-    private lateinit var bottomSheetRecyclerView: RecyclerView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.subscriptions_items, parent, false)
@@ -48,7 +48,19 @@ class SubscriptionsAdapter(private val context: Context, private val items: List
         dialog = BottomSheetDialog(context, R.style.BottomSheetDialogTheme)
         dialog.setContentView(dialogView)
 
-        bottomSheetRecyclerView = dialogView.findViewById(R.id.rv_bottoms_sheet)
+        val bottomSheetTitle: TextView = dialogView.findViewById(R.id.tittle_name)
+        val bottomSheetImagePlatform: ImageView = dialogView.findViewById(R.id.ic_image_icon_bottom_sheet)
+        val bottomSheetRecyclerView: RecyclerView = dialogView.findViewById(R.id.rv_bottoms_sheet)
+
+        bottomSheetTitle.text = item.name
+
+        val resourceId = context.resources.getIdentifier(
+            item.imageName,
+            "drawable",
+            context.packageName
+        )
+
+        bottomSheetImagePlatform.setImageResource(resourceId)
         bottomSheetRecyclerView.layoutManager = LinearLayoutManager(context)
 
 
