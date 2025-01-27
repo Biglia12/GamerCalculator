@@ -8,11 +8,11 @@
         "amounts": [
           {
             "period": "Subscripción Mensual",
-            "price": 9696
+            "price": 9863
           },
           {
             "period": "Subscripción Anual",
-            "price": 64732
+            "price": 197568
           }
         ]
       },
@@ -21,11 +21,11 @@
         "amounts": [
           {
             "period": "Subscripción Mensual",
-            "price": 27502
+            "price": 27975
           },
           {
             "period": "Subscripción Anual",
-            "price": 194227
+            "price": 197568
           }
         ]
       }
@@ -40,15 +40,15 @@
         "amounts": [
           {
             "period": "Subscripción Mensual",
-            "price": 19408
+            "price": 19742
           },
           {
             "period": "Subscripción 3 meses",
-            "price": 51782
+            "price": 52673
           },
           {
             "period": "Subscripción Anual",
-            "price": 173184
+            "price": 176163
           }
         ]
       },
@@ -57,15 +57,15 @@
         "amounts": [
           {
             "period": "Subscripción Mensual",
-            "price": 16980
+            "price": 17272
           },
           {
             "period": "Subscripción 3 meses",
-            "price": 45307
+            "price": 46087
           },
           {
             "period": "Subscripción Anual",
-            "price": 152141
+            "price": 154758
           }
         ]
       },
@@ -74,15 +74,15 @@
         "amounts": [
           {
             "period": "Subscripción Mensual",
-            "price": 11315
+            "price": 11509
           },
           {
             "period": "Subscripción 3 meses",
-            "price": 27502
+            "price": 27975
           },
           {
             "period": "Subscripción Anual",
-            "price": 89012
+            "price": 90543
           }
         ]
       }
