@@ -20,6 +20,16 @@
     <string name="calculator">Calculadora</string>
     <string name="subscription">Suscripciones</string>
     <string name="settings">Configuracion</string>
+    <string name="total_taxes">Impuestos Totales:</string>
+    <string name="without_taxes">Sin Impuestos:</string>
     <string name="hint">$0.00</string>
+
+    <string name="share">Compartir App</string>
+    <string name="qr">Compartir App Con QR</string>
+    <string name="rate">Calificar App</string>
+    <string name="contact">Contactanos</string>
+    <string name="about">Acerca De</string>
+    <string name="other_apps">Nuestras Otras Apps</string>
+    <string name="announcement">Para Ayudarnos Mira Este Breve Anuncio</string>
 
 </resources>

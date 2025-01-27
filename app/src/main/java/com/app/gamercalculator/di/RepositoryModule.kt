@@ -7,9 +7,14 @@ import com.app.gamercalculator.data.repository.dollar.dataSource.DollarCloudData
 import com.app.gamercalculator.data.repository.dollar.dataSource.DollarRoomDataSource
 import com.app.gamercalculator.data.repository.dollar.mappers.DollarDataMapper
 import com.app.gamercalculator.data.repository.plataforms.PlataformsDataRepository
+import com.app.gamercalculator.data.repository.settings.SettingsDataRepository
 import com.app.gamercalculator.domain.repository.DollarRepository
 import com.app.gamercalculator.domain.repository.PlataformsRepository
+<<<<<<< HEAD
 import com.app.gamercalculator.utils.JsonFileReader
+=======
+import com.app.gamercalculator.domain.repository.SettingsRepository
+>>>>>>> origin/settings
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,6 +42,13 @@ object RepositoryModule {
         jsonFileReader: JsonFileReader
     ): PlataformsRepository {
         return PlataformsDataRepository(jsonFileReader)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSettingsRepository(
+    ): SettingsRepository {
+        return SettingsDataRepository()
     }
 
 }

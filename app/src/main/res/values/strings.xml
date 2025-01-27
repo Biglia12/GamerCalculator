@@ -18,6 +18,16 @@
     <string name="calculator">Calculator</string>
     <string name="subscription">Subscription</string>
     <string name="settings">Settings</string>
+    <string name="total_taxes">Total Taxes:</string>
+    <string name="without_taxes">Without Taxes:</string>
     <string name="hint">$0.00</string>
+
+    <string name="share">Share App</string>
+    <string name="qr">Share App With QR</string>
+    <string name="rate">Rate App</string>
+    <string name="contact">Contact Us</string>
+    <string name="about">About</string>
+    <string name="other_apps">Our Other Apps</string>
+    <string name="announcement">To Help Check Out This Short Announcement</string>
 
 </resources>
