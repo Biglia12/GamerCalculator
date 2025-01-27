@@ -10,11 +10,8 @@ import com.app.gamercalculator.data.repository.plataforms.PlataformsDataReposito
 import com.app.gamercalculator.data.repository.settings.SettingsDataRepository
 import com.app.gamercalculator.domain.repository.DollarRepository
 import com.app.gamercalculator.domain.repository.PlataformsRepository
-<<<<<<< HEAD
 import com.app.gamercalculator.utils.JsonFileReader
-=======
 import com.app.gamercalculator.domain.repository.SettingsRepository
->>>>>>> origin/settings
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
