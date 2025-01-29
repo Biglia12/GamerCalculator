@@ -8,4 +8,6 @@ object Constants {
 
     const val URL_PLAYSTORE_APPS = "https://play.google.com/store/apps/developer?id=SFEApps&hl=es_419"
 
+    const val SHARE_APP = "Link De La App"
+
 }

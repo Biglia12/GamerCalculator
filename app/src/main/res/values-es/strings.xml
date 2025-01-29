@@ -32,4 +32,7 @@
     <string name="other_apps">Nuestras Otras Apps</string>
     <string name="announcement">Para Ayudarnos Mira Este Breve Anuncio</string>
 
+    <string name="qualify">Si te gusto la app, por favor deja una clasificacion positiva o un comentario en Google Play.</string>
+    <string name="thanks">Gracias Por Utilizar Nuestra App</string>
+
 </resources>

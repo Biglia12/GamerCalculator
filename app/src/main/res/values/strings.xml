@@ -30,4 +30,7 @@
     <string name="other_apps">Our Other Apps</string>
     <string name="announcement">To Help Check Out This Short Announcement</string>
 
+    <string name="qualify">If you liked the app, please leave a positive rating or review on Google Play.</string>
+    <string name="thanks">Thank you for using our app</string>
+
 </resources>
