@@ -4,13 +4,11 @@ import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.gamercalculator.R
 import com.app.gamercalculator.databinding.FragmentSubscriptionsBinding
-import com.app.gamercalculator.ui.views.adapters.DollarAdapter
+import com.app.gamercalculator.ui.views.adapters.SubscriptionsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,7 +16,7 @@ class SubscriptionsFragment : Fragment(R.layout.fragment_subscriptions) {
 
     private var binding: FragmentSubscriptionsBinding? = null
     private val viewModel: SubscriptionsViewModel by viewModels()
-    private lateinit var  dollarAdapter: DollarAdapter
+    private lateinit var  dollarAdapter: SubscriptionsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,19 +29,28 @@ class SubscriptionsFragment : Fragment(R.layout.fragment_subscriptions) {
 
        // viewModel.getDollarFromApi()
         viewModel.getPlataformsDollar()
+        viewModel.getPlataform()
+        observers()
 
 
     }
 
     private fun observers() {
+
+        viewModel.plataforms.observe(viewLifecycleOwner){
+            binding?.rvDollarCompanies?.layoutManager = LinearLayoutManager(context)
+            dollarAdapter = SubscriptionsAdapter(requireContext(), it)
+            binding?.rvDollarCompanies?.adapter = dollarAdapter
+        }
+
         viewModel.dollar.observe(viewLifecycleOwner) {
             //binding?.rvDollar?.text = it.toString()
         }
 
         viewModel.plataformsDollar.observe( viewLifecycleOwner) {
-            binding?.rvDollarCompanies?.layoutManager = LinearLayoutManager(context)
+            /*binding?.rvDollarCompanies?.layoutManager = LinearLayoutManager(context)
             dollarAdapter = DollarAdapter(requireContext(), it)
-            binding?.rvDollarCompanies?.adapter = dollarAdapter
+            binding?.rvDollarCompanies?.adapter = dollarAdapter*/
             //val adapterActions = DollarAdapter(requireContext(), it)
         }
 

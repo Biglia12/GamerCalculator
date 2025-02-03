@@ -25,11 +25,27 @@ android {
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "version"
+   /* productFlavors {
+        dev {
+            applicationIdSuffix ".dev"
+            versionNameSuffix "dev"
+        }
+
+        prod {
+            applicationIdSuffix ".prod"
+        }
+    }*/
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

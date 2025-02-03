@@ -27,95 +27,87 @@ class GetDollarUseCase @Inject constructor(
     suspend fun getDollarCard(inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
         val dollarCard = repository.getDollarCard()
         val dollarOfficial = repository.getDollarOfficial()
+        val inputAmount = inputNumber.toDouble()
 
-        val dollarCardWitTaxes = DollarTaxes(
+        return DollarTaxes(
             name = dollarCard.name,
             date = dollarCard.date,
-            dollarValue = dollarOfficial.sell * inputNumber.toDouble(),
-            taxIva = ruleThreeAndInputNumber(dollarOfficial.buy, inputNumber.toDouble(), 21),
-            taxArca = ruleThreeAndInputNumber(dollarOfficial.buy, inputNumber.toDouble(), 30),
-            mountTotal = if (isDollarChecked) formatMount(dollarCard.sell.toInt() * inputNumber.toDouble()) else formatMount(dollarCard.sell.toInt() + inputNumber.toDouble()),
-            0.0.toString()
+            dollarValue = formatMount(dollarOfficial.sell * inputAmount),
+            taxIva = calculateTax(dollarOfficial.buy, inputAmount, 21),
+            taxArca = calculateTax(dollarOfficial.buy, inputAmount, 30),
+            mountTotal = formatMount(if (isDollarChecked) dollarCard.sell * inputAmount else dollarCard.sell + inputAmount),
+            mountTotalTaxes = "0.00"
         )
-        return dollarCardWitTaxes
     }
 
     suspend fun getDollarMep(inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
         val dollarMep = repository.getDollarMep()
-        val countDollarMep = formatMount(inputNumber.toDouble() * dollarMep.sell)
-        val countDollarPesos = formatMount(inputNumber.toDouble() / dollarMep.sell)
-        val dollarMepWitTaxes = DollarTaxes(
+        val inputAmount = inputNumber.toDouble()
+
+        return DollarTaxes(
             name = dollarMep.name,
-            date = formateDate(dollarMep.date),
-            dollarValue = if (isDollarChecked) dollarMep.sell * inputNumber.toDouble() else inputNumber.toDouble(),
-            taxIva = 0.0,
-            taxArca = 0.0,
-            mountTotal = if (isDollarChecked) countDollarMep else countDollarPesos,
-            0.0.toString()
+            date = formatDate(dollarMep.date),
+            dollarValue = formatMount(if (isDollarChecked) dollarMep.sell * inputAmount else inputAmount),
+            taxIva = "0.00",
+            taxArca = "0.00",
+            mountTotal = formatMount(if (isDollarChecked) inputAmount * dollarMep.sell else inputAmount / dollarMep.sell),
+            mountTotalTaxes = "0.00"
         )
-        return dollarMepWitTaxes
     }
 
-    suspend fun getDollarCripto (inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
+    suspend fun getDollarCripto(inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
         val dollarCripto = repository.getDollarCripto()
-        val countDollarCripto = formatMount(inputNumber.toDouble() * dollarCripto.sell)
-        val countPesosCripto = formatMount(inputNumber.toDouble() / dollarCripto.sell)
-        val dollarCriptoWitTaxes = DollarTaxes(
-            name = dollarCripto.name,
-            date = formateDate(dollarCripto.date),
-            dollarValue = if (isDollarChecked) dollarCripto.sell * inputNumber.toDouble() else inputNumber.toDouble(),
-            taxIva = 0.0,
-            taxArca = 0.0,
-            mountTotal = if (isDollarChecked) countDollarCripto else countPesosCripto,
-            mountTotalTaxes = 0.0.toString()
-        )
-        return dollarCriptoWitTaxes
-    }
+        val inputAmount = inputNumber.toDouble()
 
+        return DollarTaxes(
+            name = dollarCripto.name,
+            date = formatDate(dollarCripto.date),
+            dollarValue = formatMount(if (isDollarChecked) dollarCripto.sell * inputAmount else inputAmount),
+            taxIva = "0.00",
+            taxArca = "0.00",
+            mountTotal = formatMount(if (isDollarChecked) inputAmount * dollarCripto.sell else inputAmount / dollarCripto.sell),
+            mountTotalTaxes = "0.00"
+        )
+    }
 
     suspend fun getDollarCardDigital(inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
         val dollarOfficial = repository.getDollarOfficial()
-        val taxIvaDollar = ruleThreeAndInputNumber(dollarOfficial.sell, inputNumber.toDouble(), 21)
-        val taxArcaDollar = ruleThreeAndInputNumber(dollarOfficial.sell, inputNumber.toDouble(), 30)
-        val sumTaxesDollar = formatMount(taxIvaDollar + taxArcaDollar + dollarOfficial.sell * inputNumber.toDouble())
+        val inputAmount = inputNumber.toDouble()
 
-        val taxIvaPesos = divideInputNumberTax(inputNumber.toDouble(), 21)
-        val taxArcaPesos = divideInputNumberTax(inputNumber.toDouble(), 30)
-        val sumTaxesPesos = formatMount(taxIvaPesos + taxArcaPesos + inputNumber.toDouble())
+        val taxIvaDollar = calculateTax(dollarOfficial.sell, inputAmount, 21).toDouble()
+        val taxArcaDollar = calculateTax(dollarOfficial.sell, inputAmount, 30).toDouble()
+        val totalDollar = dollarOfficial.sell * inputAmount + taxIvaDollar + taxArcaDollar
 
-        val sumTaxesTotalDollar = formatMount(taxArcaDollar + taxIvaDollar)
-        val sumTaxesTotalPesos = formatMount(taxArcaPesos + taxIvaPesos)
+        val taxIvaPesos = calculateTax(inputAmount, 1.0, 21).toDouble()
+        val taxArcaPesos = calculateTax(inputAmount, 1.0, 30).toDouble()
+        val totalPesos = inputAmount + taxIvaPesos + taxArcaPesos
 
-        val dollarCardWitTaxes = DollarTaxes(
+        return DollarTaxes(
             name = dollarOfficial.name,
-            date = formateDate(dollarOfficial.date),
-            dollarValue = if (isDollarChecked) dollarOfficial.sell * inputNumber.toDouble() else inputNumber.toDouble(),
-            taxIva = if (isDollarChecked) taxIvaDollar else taxIvaPesos,
-            taxArca = if (isDollarChecked) taxArcaDollar else taxArcaPesos,
-            mountTotal = if (isDollarChecked) sumTaxesDollar else sumTaxesPesos,
-            mountTotalTaxes = if (isDollarChecked) sumTaxesTotalDollar else sumTaxesTotalPesos
+            date = formatDate(dollarOfficial.date),
+            dollarValue = formatMount(if (isDollarChecked) dollarOfficial.sell * inputAmount else inputAmount),
+            taxIva = formatMount(if (isDollarChecked) taxIvaDollar else taxIvaPesos),
+            taxArca = formatMount(if (isDollarChecked) taxArcaDollar else taxArcaPesos),
+            mountTotal = formatMount(if (isDollarChecked) totalDollar else totalPesos),
+            mountTotalTaxes = formatMount(if (isDollarChecked) taxIvaDollar + taxArcaDollar else taxIvaPesos + taxArcaPesos)
         )
-        return dollarCardWitTaxes
     }
 
-    private fun formateDate(date: String): String {
+    private fun formatDate(date: String): String {
         return DateUtils.formatTimeZ(date)
     }
 
-    private fun ruleThreeAndInputNumber(dollar: Double, inputNumber: Double, tax: Int): Double {
-        val dollarInputNumber = dollar * inputNumber
-        return (dollarInputNumber * tax) / 100
-    }
-
-    private fun divideInputNumberTax( inputNumber: Double, taxArca: Int): Double {
-        return (inputNumber * taxArca) / 100
+    private fun calculateTax(base: Double, amount: Double, taxPercentage: Int): String {
+        return formatMount((base * amount * taxPercentage) / 100)
     }
 
     private fun formatMount(value: Double): String {
-        val formatter = NumberFormat.getNumberInstance(Locale("es"))
-        formatter.maximumFractionDigits = 2
-        formatter.minimumFractionDigits = 2
+        val formatter = NumberFormat.getNumberInstance(Locale("es")).apply {
+            maximumFractionDigits = 2
+            minimumFractionDigits = 2
+        }
         return formatter.format(value)
     }
+
 
 }

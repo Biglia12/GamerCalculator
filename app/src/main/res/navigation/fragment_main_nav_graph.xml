@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/calculatorFragment"
-        android:name="com.app.gamercalculator.ui.views.fragments.CalculatorFragment"
+        android:name="com.app.gamercalculator.ui.views.fragments.SettingsFragment"
         android:label="fragment_calculator"
-        tools:layout="@layout/fragment_calculator" />
+        tools:layout="@layout/fragment_settings" />
 
     <fragment
         android:id="@+id/subscriptionsFragment"
