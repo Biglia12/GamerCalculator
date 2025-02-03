@@ -29,13 +29,18 @@ class GetDollarUseCase @Inject constructor(
         val dollarOfficial = repository.getDollarOfficial()
         val inputAmount = inputNumber.toDouble()
 
+        val dollarValue = dollarOfficial.sell * inputAmount
+        val taxIva = calculateTax(dollarOfficial.buy, inputAmount, 21)
+        val taxArca = calculateTax(dollarOfficial.buy, inputAmount, 30)
+        val mountTotal = if (isDollarChecked) dollarCard.sell * inputAmount else dollarCard.sell + inputAmount
+
         return DollarTaxes(
             name = dollarCard.name,
-            date = dollarCard.date,
-            dollarValue = formatMount(dollarOfficial.sell * inputAmount),
-            taxIva = calculateTax(dollarOfficial.buy, inputAmount, 21),
-            taxArca = calculateTax(dollarOfficial.buy, inputAmount, 30),
-            mountTotal = formatMount(if (isDollarChecked) dollarCard.sell * inputAmount else dollarCard.sell + inputAmount),
+            date = formatDate(dollarCard.date),
+            dollarValue = formatMount(dollarValue),
+            taxIva = formatMount(taxIva),
+            taxArca = formatMount(taxArca),
+            mountTotal = formatMount(mountTotal),
             mountTotalTaxes = "0.00"
         )
     }
@@ -44,13 +49,16 @@ class GetDollarUseCase @Inject constructor(
         val dollarMep = repository.getDollarMep()
         val inputAmount = inputNumber.toDouble()
 
+        val countDollarMep = dollarMep.sell * inputAmount
+        val countDollarPesos = inputAmount / dollarMep.sell
+
         return DollarTaxes(
             name = dollarMep.name,
             date = formatDate(dollarMep.date),
-            dollarValue = formatMount(if (isDollarChecked) dollarMep.sell * inputAmount else inputAmount),
+            dollarValue = formatMount(if (isDollarChecked) countDollarMep else inputAmount),
             taxIva = "0.00",
             taxArca = "0.00",
-            mountTotal = formatMount(if (isDollarChecked) inputAmount * dollarMep.sell else inputAmount / dollarMep.sell),
+            mountTotal = formatMount(if (isDollarChecked) countDollarMep else countDollarPesos),
             mountTotalTaxes = "0.00"
         )
     }
@@ -59,13 +67,16 @@ class GetDollarUseCase @Inject constructor(
         val dollarCripto = repository.getDollarCripto()
         val inputAmount = inputNumber.toDouble()
 
+        val countDollarCripto = dollarCripto.sell * inputAmount
+        val countPesosCripto = inputAmount / dollarCripto.sell
+
         return DollarTaxes(
             name = dollarCripto.name,
             date = formatDate(dollarCripto.date),
-            dollarValue = formatMount(if (isDollarChecked) dollarCripto.sell * inputAmount else inputAmount),
+            dollarValue = formatMount(if (isDollarChecked) countDollarCripto else inputAmount),
             taxIva = "0.00",
             taxArca = "0.00",
-            mountTotal = formatMount(if (isDollarChecked) inputAmount * dollarCripto.sell else inputAmount / dollarCripto.sell),
+            mountTotal = formatMount(if (isDollarChecked) countDollarCripto else countPesosCripto),
             mountTotalTaxes = "0.00"
         )
     }
@@ -74,13 +85,17 @@ class GetDollarUseCase @Inject constructor(
         val dollarOfficial = repository.getDollarOfficial()
         val inputAmount = inputNumber.toDouble()
 
-        val taxIvaDollar = calculateTax(dollarOfficial.sell, inputAmount, 21).toDouble()
-        val taxArcaDollar = calculateTax(dollarOfficial.sell, inputAmount, 30).toDouble()
-        val totalDollar = dollarOfficial.sell * inputAmount + taxIvaDollar + taxArcaDollar
+        // Cálculo en dólares
+        val taxIvaDollar = calculateTax(dollarOfficial.sell, inputAmount, 21)
+        val taxArcaDollar = calculateTax(dollarOfficial.sell, inputAmount, 30)
+        val sumTaxesDollar = dollarOfficial.sell * inputAmount + taxIvaDollar + taxArcaDollar
+        val sumTaxesTotalDollar = taxIvaDollar + taxArcaDollar
 
-        val taxIvaPesos = calculateTax(inputAmount, 1.0, 21).toDouble()
-        val taxArcaPesos = calculateTax(inputAmount, 1.0, 30).toDouble()
-        val totalPesos = inputAmount + taxIvaPesos + taxArcaPesos
+        // Cálculo en pesos
+        val taxIvaPesos = calculateTax(inputAmount, 1.0, 21)
+        val taxArcaPesos = calculateTax(inputAmount, 1.0, 30)
+        val sumTaxesPesos = inputAmount + taxIvaPesos + taxArcaPesos
+        val sumTaxesTotalPesos = taxIvaPesos + taxArcaPesos
 
         return DollarTaxes(
             name = dollarOfficial.name,
@@ -88,19 +103,17 @@ class GetDollarUseCase @Inject constructor(
             dollarValue = formatMount(if (isDollarChecked) dollarOfficial.sell * inputAmount else inputAmount),
             taxIva = formatMount(if (isDollarChecked) taxIvaDollar else taxIvaPesos),
             taxArca = formatMount(if (isDollarChecked) taxArcaDollar else taxArcaPesos),
-            mountTotal = formatMount(if (isDollarChecked) totalDollar else totalPesos),
-            mountTotalTaxes = formatMount(if (isDollarChecked) taxIvaDollar + taxArcaDollar else taxIvaPesos + taxArcaPesos)
+            mountTotal = formatMount(if (isDollarChecked) sumTaxesDollar else sumTaxesPesos),
+            mountTotalTaxes = formatMount(if (isDollarChecked) sumTaxesTotalDollar else sumTaxesTotalPesos)
         )
     }
 
-    private fun formatDate(date: String): String {
-        return DateUtils.formatTimeZ(date)
+    // Función optimizada para calcular impuestos
+    private fun calculateTax(base: Double, amount: Double, taxPercentage: Int): Double {
+        return (base * amount * taxPercentage) / 100
     }
 
-    private fun calculateTax(base: Double, amount: Double, taxPercentage: Int): String {
-        return formatMount((base * amount * taxPercentage) / 100)
-    }
-
+    // Se asegura de que `formatMount` solo se use en la presentación
     private fun formatMount(value: Double): String {
         val formatter = NumberFormat.getNumberInstance(Locale("es")).apply {
             maximumFractionDigits = 2
@@ -108,6 +121,11 @@ class GetDollarUseCase @Inject constructor(
         }
         return formatter.format(value)
     }
+
+    private fun formatDate(date: String): String {
+        return DateUtils.formatTimeZ(date)
+    }
+
 
 
 }
