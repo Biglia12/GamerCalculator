@@ -8,7 +8,7 @@ App creada para saber los precios de las pataformas con impuestos incluidos.
 
 -MVVM
 
--Clean architecru
+-Clean architecure
 
 -Dagger Hilt
 
