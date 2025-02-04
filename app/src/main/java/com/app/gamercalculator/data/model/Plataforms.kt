@@ -4,6 +4,7 @@ package com.app.gamercalculator.data.model
 data class Platform(
     val imageName: String, // Nombre del drawable, p. ej., "ic_ea"
     val name: String, // Nombre de la plataforma, p. ej., "EA Play"
+    val money: String, // Moneda, p. ej., "Dollar"
     val prices: List<PricePlan> // Lista de planes de precios
 )
 
@@ -14,7 +15,7 @@ data class PricePlan(
 
 data class Amount(
     val period: String, // Periodo, p. ej., "Monthly", "Quarterly", etc.
-    val price: Int // Precio del plan en la moneda correspondiente
+    var price: Double // Precio del plan en la moneda correspondiente
 )
 
  data class Platforms (val list : List<Platform>)

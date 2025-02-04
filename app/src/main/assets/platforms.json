@@ -2,17 +2,18 @@
   {
     "imageName": "ic_ea",
     "name": "EA Play",
+    "money": "Dollar",
     "prices": [
       {
         "type": "Standard",
         "amounts": [
           {
             "period": "Subscripción Mensual",
-            "price": 9863
+            "price": 5.99
           },
           {
             "period": "Subscripción Anual",
-            "price": 197568
+            "price": 39.99
           }
         ]
       },
@@ -21,11 +22,11 @@
         "amounts": [
           {
             "period": "Subscripción Mensual",
-            "price": 27975
+            "price": 16.99
           },
           {
             "period": "Subscripción Anual",
-            "price": 197568
+            "price": 119.99
           }
         ]
       }
@@ -34,21 +35,22 @@
   {
     "imageName": "ic_playstation",
     "name": "PlayStation Plus",
+    "money": "Dollar",
     "prices": [
       {
         "type": "Deluxe",
         "amounts": [
           {
             "period": "Subscripción Mensual",
-            "price": 19742
+            "price": 11.99
           },
           {
             "period": "Subscripción 3 meses",
-            "price": 52673
+            "price": 31.99
           },
           {
             "period": "Subscripción Anual",
-            "price": 176163
+            "price": 106.99
           }
         ]
       },
@@ -57,15 +59,15 @@
         "amounts": [
           {
             "period": "Subscripción Mensual",
-            "price": 17272
+            "price": 10.49
           },
           {
             "period": "Subscripción 3 meses",
-            "price": 46087
+            "price": 27.99
           },
           {
             "period": "Subscripción Anual",
-            "price": 154758
+            "price": 93.99
           }
         ]
       },
@@ -74,15 +76,15 @@
         "amounts": [
           {
             "period": "Subscripción Mensual",
-            "price": 11509
+            "price": 6.99
           },
           {
             "period": "Subscripción 3 meses",
-            "price": 27975
+            "price": 16.99
           },
           {
             "period": "Subscripción Anual",
-            "price": 90543
+            "price": 54.99
           }
         ]
       }
@@ -91,6 +93,7 @@
   {
     "imageName": "ic_xbox",
     "name": "Xbox Game Pass",
+    "money": "Pesos",
     "prices": [
       {
         "type": "PC",
@@ -133,6 +136,7 @@
   {
     "imageName": "ic_nintendo",
     "name": "Nintendo Switch Online",
+    "money": "Pesos",
     "prices": [
       {
         "type": "Individual",
@@ -183,6 +187,7 @@
   {
     "imageName": "ic_nvidia",
     "name": "GeForce Now",
+    "money": "Dollar",
     "prices": [
       {
         "type": "Day Pass x1",
