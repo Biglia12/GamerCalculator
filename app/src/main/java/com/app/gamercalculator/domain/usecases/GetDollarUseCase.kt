@@ -4,10 +4,7 @@ import com.app.gamercalculator.domain.entities.Dollar
 import com.app.gamercalculator.domain.entities.DollarTaxes
 import com.app.gamercalculator.domain.repository.DollarRepository
 import com.app.gamercalculator.domain.utils.DateUtils
-import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
-import java.text.SimpleDateFormat
 import java.util.Locale
 import javax.inject.Inject
 
@@ -45,7 +42,7 @@ class GetDollarUseCase @Inject constructor(
         )
     }
 
-    suspend fun getDollarMep(inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
+    suspend fun getDollarMep(inputNumber: String, moneyCurrency: String): DollarTaxes {
         val dollarMep = repository.getDollarMep()
         val inputAmount = inputNumber.toDouble()
 
@@ -55,15 +52,27 @@ class GetDollarUseCase @Inject constructor(
         return DollarTaxes(
             name = dollarMep.name,
             date = formatDate(dollarMep.date),
-            dollarValue = formatMount(if (isDollarChecked) countDollarMep else inputAmount),
+            dollarValue = formatMount(when(moneyCurrency){
+                "ARS" -> inputAmount
+                "USD" -> countDollarMep
+                "EUR" -> 0.0
+                else -> {0.0}
+            }),
             taxIva = "0.00",
             taxArca = "0.00",
-            mountTotal = formatMount(if (isDollarChecked) countDollarMep else countDollarPesos),
+            mountTotal =
+            formatMount(when(moneyCurrency){
+                "ARS" -> countDollarPesos
+                "USD" -> countDollarMep
+                "EUR" -> 0.0
+                else -> {0.0}
+            }),
+            //formatMount(if (isDollarChecked) countDollarMep else countDollarPesos),
             mountTotalTaxes = "0.00"
         )
     }
 
-    suspend fun getDollarCripto(inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
+    suspend fun getDollarCripto(inputNumber: String, moneyCurrency: String): DollarTaxes {
         val dollarCripto = repository.getDollarCripto()
         val inputAmount = inputNumber.toDouble()
 
@@ -73,15 +82,29 @@ class GetDollarUseCase @Inject constructor(
         return DollarTaxes(
             name = dollarCripto.name,
             date = formatDate(dollarCripto.date),
-            dollarValue = formatMount(if (isDollarChecked) countDollarCripto else inputAmount),
+            dollarValue =
+            formatMount(when(moneyCurrency){
+                "ARS" -> inputAmount
+                "USD" -> countDollarCripto
+                "EUR" -> 0.0
+                else -> {0.0}
+            }),
+            //formatMount(if (isDollarChecked) countDollarCripto else inputAmount),
             taxIva = "0.00",
             taxArca = "0.00",
-            mountTotal = formatMount(if (isDollarChecked) countDollarCripto else countPesosCripto),
+            mountTotal =
+            formatMount(when(moneyCurrency){
+                "ARS" -> countPesosCripto
+                "USD" -> countDollarCripto
+                "EUR" -> 0.0
+                else -> {0.0}
+            }),
+            //formatMount(if (isDollarChecked) countDollarCripto else countPesosCripto),
             mountTotalTaxes = "0.00"
         )
     }
 
-    suspend fun getDollarCardDigital(inputNumber: String, isDollarChecked: Boolean): DollarTaxes {
+    suspend fun getDollarCardDigital(inputNumber: String, moneyCurrency: String): DollarTaxes {
         val dollarOfficial = repository.getDollarOfficial()
         val inputAmount = inputNumber.toDouble()
 
@@ -100,11 +123,46 @@ class GetDollarUseCase @Inject constructor(
         return DollarTaxes(
             name = dollarOfficial.name,
             date = formatDate(dollarOfficial.date),
-            dollarValue = formatMount(if (isDollarChecked) dollarOfficial.sell * inputAmount else inputAmount),
-            taxIva = formatMount(if (isDollarChecked) taxIvaDollar else taxIvaPesos),
-            taxArca = formatMount(if (isDollarChecked) taxArcaDollar else taxArcaPesos),
-            mountTotal = formatMount(if (isDollarChecked) sumTaxesDollar else sumTaxesPesos),
-            mountTotalTaxes = formatMount(if (isDollarChecked) sumTaxesTotalDollar else sumTaxesTotalPesos)
+            dollarValue =
+            formatMount(when(moneyCurrency){
+                "ARS" -> inputAmount
+                "USD" -> dollarOfficial.sell * inputAmount
+                "EUR" -> 0.0
+                else -> {0.0}
+            }),
+            //formatMount(if (isDollarChecked) dollarOfficial.sell * inputAmount else inputAmount),
+            taxIva =
+            formatMount(when(moneyCurrency){
+                "ARS" -> taxIvaPesos
+                "USD" -> taxIvaDollar
+                "EUR" -> 0.0
+                else -> {0.0}
+            }),
+            //formatMount(if (isDollarChecked) taxIvaDollar else taxIvaPesos),
+            taxArca =
+            formatMount(when(moneyCurrency){
+                "ARS" -> taxArcaPesos
+                "USD" -> taxArcaDollar
+                "EUR" -> 0.0
+                else -> {0.0}
+            }),
+            //formatMount(if (isDollarChecked) taxArcaDollar else taxArcaPesos),
+            mountTotal =
+            formatMount(when(moneyCurrency){
+                "ARS" -> sumTaxesPesos
+                "USD" -> sumTaxesDollar
+                "EUR" -> 0.0
+                else -> {0.0}
+            }),
+            //formatMount(if (isDollarChecked) sumTaxesDollar else sumTaxesPesos),
+            mountTotalTaxes =
+            formatMount(when(moneyCurrency){
+                "ARS" -> sumTaxesPesos
+                "USD" -> sumTaxesTotalDollar
+                "EUR" -> 0.0
+                else -> {0.0}
+            })
+            //formatMount(if (isDollarChecked) sumTaxesTotalDollar else sumTaxesTotalPesos)
         )
     }
 

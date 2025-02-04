@@ -1,20 +1,15 @@
 package com.app.gamercalculator.ui.views.fragments
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import com.app.gamercalculator.R
 import com.app.gamercalculator.data.network.Constants
@@ -22,10 +17,7 @@ import com.app.gamercalculator.databinding.FragmentHomeBinding
 import com.app.gamercalculator.domain.entities.DollarTaxes
 import com.app.gamercalculator.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.Currency
-import kotlin.time.times
 
 
 @AndroidEntryPoint
@@ -34,6 +26,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
     private var isDollarChecked: Boolean = true
+    private var selectedCurrency: String = "USD"
     private var changedDollar: String? = ""
     private var inputNumber: String = ""
     private var firstTimeDollarCard = true
@@ -95,9 +88,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 inputNumber = if (s.isNullOrEmpty()) "0" else s.toString()
                 Log.i("inputNumber", inputNumber)
                 when (changedDollar) {
-                    "tarjeta" -> dollarCardDigital(inputNumber)
-                    "mep" -> dollarMep(inputNumber)
-                    "cripto" -> dollarCripto(inputNumber)
+                    "tarjeta" -> dollarCardDigital(inputNumber, selectedCurrency)
+                    "mep" -> dollarMep(inputNumber, selectedCurrency)
+                    "cripto" -> dollarCripto(inputNumber, selectedCurrency)
                     else -> {}
                 }
             }
@@ -110,9 +103,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
     private fun buttonListeners() {
-        setupButton(binding.buttonTarjeta, "tarjeta") { dollarCardDigital(it) }
-        setupButton(binding.buttonDolarmep, "mep") { dollarMep(it) }
-        setupButton(binding.buttonCripto, "cripto") { dollarCripto(it) }
+        setupButton(binding.buttonTarjeta, "tarjeta") { dollarCardDigital(it, selectedCurrency) }
+        setupButton(binding.buttonDolarmep, "mep") { dollarMep(it, selectedCurrency) }
+        setupButton(binding.buttonCripto, "cripto") { dollarCripto(it, selectedCurrency) }
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -137,18 +130,31 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setupSpinner() {
-        val options = listOf("ARS", "USD", "EUR")
+        val options = listOf("USD", "ARS", "EUR")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, options)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spMoney.adapter = adapter
 
         binding.spMoney.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val selectedCurrency = options[position]
-                when(selectedCurrency){
-                    "ARS" -> changedDollar()
-                    "USD" -> changedDollar()
-                    "EUR" -> changedDollar()
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                selectedCurrency = options[position]
+                when (selectedCurrency) {
+                    "USD" -> {
+                        selectedCurrency = "USD"
+                        changedDollar(selectedCurrency)
+                    }
+                    "ARS" -> {
+                        changedDollar(selectedCurrency)
+                    }
+                    "EUR" -> {
+                        selectedCurrency = "EUR"
+                        changedDollar(selectedCurrency)
+                    }
                 }
             }
 
@@ -159,23 +165,22 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
     private fun radioButton() {}
-   //     binding.rdDollar.isChecked = true
-   //
-   //     binding.rdDollar.setOnCheckedChangeListener { buttonView, isChecked ->
-   //         if (isChecked) {
-   //             isDollarChecked = true
-   //              binding.rdPesos.isChecked = false
-   //              changedDollar()
-   //       }
-   //     }
-   //  binding.rdPesos.setOnCheckedChangeListener { buttonView, isChecked ->
-   //       if (isChecked) {
-   //         isDollarChecked = false
-   //          binding.rdDollar.isChecked = false
-   //        changedDollar()
-   //         }
-   //     }
-
+    //     binding.rdDollar.isChecked = true
+    //
+    //     binding.rdDollar.setOnCheckedChangeListener { buttonView, isChecked ->
+    //         if (isChecked) {
+    //             isDollarChecked = true
+    //              binding.rdPesos.isChecked = false
+    //              changedDollar()
+    //       }
+    //     }
+    //  binding.rdPesos.setOnCheckedChangeListener { buttonView, isChecked ->
+    //       if (isChecked) {
+    //         isDollarChecked = false
+    //          binding.rdDollar.isChecked = false
+    //        changedDollar()
+    //         }
+    //     }
 
 
     private fun observers() {
@@ -197,13 +202,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     }
 
-    private fun changedDollar() {
+    private fun changedDollar(selectedCurrency: String) {
         when (changedDollar) {
             Log.i("changedDollar", binding.etPriceNumber.text.toString()).toString(),
-            "tarjeta" -> dollarCardDigital(binding.etPriceNumber.text.toString().ifEmpty { "0" })
+            "tarjeta" -> dollarCardDigital(binding.etPriceNumber.text.toString().ifEmpty { "0" }, selectedCurrency)
 
-            "mep" -> dollarMep(binding.etPriceNumber.text.toString().ifEmpty { "0" })
-            "cripto" -> dollarCripto(binding.etPriceNumber.text.toString().ifEmpty { "0" })
+            "mep" -> dollarMep(binding.etPriceNumber.text.toString().ifEmpty { "0" }, selectedCurrency)
+            "cripto" -> dollarCripto(binding.etPriceNumber.text.toString().ifEmpty { "0" }, selectedCurrency)
             else -> {}
         }
     }
@@ -223,16 +228,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.totalPrice.text = totalPrice
     }
 
-    private fun dollarCardDigital(number: String) {
-        viewModel.getDollarCardDigital(number, isDollarChecked)
+    private fun dollarCardDigital(number: String, selectedCurrency: String) {
+        viewModel.getDollarCardDigital(number, selectedCurrency)
     }
 
-    private fun dollarMep(number: String) {
-        viewModel.getDollarMep(number, isDollarChecked)
+    private fun dollarMep(number: String, selectedCurrency: String) {
+        viewModel.getDollarMep(number, selectedCurrency)
     }
 
-    private fun dollarCripto(number: String) {
-        viewModel.getDollarCripto(number, isDollarChecked)
+    private fun dollarCripto(number: String, selectedCurrency: String) {
+        viewModel.getDollarCripto(number, selectedCurrency)
     }
 
 }

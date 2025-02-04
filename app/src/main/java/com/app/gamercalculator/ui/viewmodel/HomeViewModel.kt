@@ -82,26 +82,26 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getDollarCardDigital(inputNumber: String, isDollarChecked: Boolean) {
+    fun getDollarCardDigital(inputNumber: String, selectedCurrency: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val dollarCard = getDollarUseCase.getDollarCardDigital(inputNumber, isDollarChecked)
+            val dollarCard = getDollarUseCase.getDollarCardDigital(inputNumber, selectedCurrency)
             Log.i("dollarTarjeta", "$inputNumber $dollarCard")
             _dollarCard.postValue(dollarCard)
             // isLoading.postValue(false)
         }
     }
 
-    fun getDollarMep(inputNumber: String, isDollarChecked: Boolean) {
+    fun getDollarMep(inputNumber: String, selectedCurrency: String) {
          viewModelScope.launch(Dispatchers.IO) {
-             val dollarMep = getDollarUseCase.getDollarMep(inputNumber, isDollarChecked)
+             val dollarMep = getDollarUseCase.getDollarMep(inputNumber, selectedCurrency)
              Log.i("dollarMep", "$inputNumber $dollarMep")
              _dollarMep.postValue(dollarMep)
          }
     }
 
-    fun getDollarCripto(inputNumber: String, isDollarChecked: Boolean) {
+    fun getDollarCripto(inputNumber: String, selectedCurrency: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val dollarCripto = getDollarUseCase.getDollarCripto(inputNumber, isDollarChecked)
+            val dollarCripto = getDollarUseCase.getDollarCripto(inputNumber, selectedCurrency)
             _dollarCripto.postValue(dollarCripto)
         }
     }
