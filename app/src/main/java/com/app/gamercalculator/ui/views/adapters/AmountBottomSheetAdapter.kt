@@ -7,6 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gamercalculator.R
 import com.app.gamercalculator.data.model.Amount
+import com.app.gamercalculator.data.network.Constants
+import java.text.NumberFormat
+import java.util.Locale
 
 class AmountBottomSheetAdapter ( private val amounts: List<Amount>)  : RecyclerView.Adapter<AmountBottomSheetAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AmountBottomSheetAdapter.ViewHolder {
@@ -17,8 +20,17 @@ class AmountBottomSheetAdapter ( private val amounts: List<Amount>)  : RecyclerV
 
     override fun onBindViewHolder(holder: AmountBottomSheetAdapter.ViewHolder, position: Int) {
         val amount = amounts[position]
+        val amountPrice = Constants.SYMBOL_DOLLAR + formatMount(amount.price)
         holder.periodText.text = amount.period
-        holder.priceText.text = "$${amount.price}"
+        holder.priceText.text = amountPrice
+    }
+
+    private fun formatMount(value: Double): String {
+        val formatter = NumberFormat.getNumberInstance(Locale("es")).apply {
+            maximumFractionDigits = 2
+            minimumFractionDigits = 2
+        }
+        return formatter.format(value)
     }
 
     override fun getItemCount(): Int {
