@@ -132,6 +132,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linear_btns_dollar" />
 
+        <Spinner
+            android:id="@+id/sp_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="@color/white" />
+
+        <!--
         <RadioButton
             android:id="@+id/rd_dollar"
             android:layout_width="wrap_content"
@@ -153,7 +161,7 @@
             android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
+                                                           -->
     </LinearLayout>
 
 
