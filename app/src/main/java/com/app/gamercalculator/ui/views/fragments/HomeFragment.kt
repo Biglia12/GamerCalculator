@@ -8,9 +8,13 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
 import com.app.gamercalculator.R
 import com.app.gamercalculator.data.network.Constants
@@ -20,6 +24,8 @@ import com.app.gamercalculator.ui.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.Currency
+import kotlin.time.times
 
 
 @AndroidEntryPoint
@@ -71,13 +77,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         etWatcher()
         radioButton()
         buttonListeners()
+        setupSpinner()
 
     }
 
     private fun etWatcher() {
         if (firstTimeDollarCard) {
             firstTimeDollarCard = false
-            changedDollar = "tarjeta" // la primera vez se hara el caluclo por dolar tarjeta asi el usuario no presiona los botones y no queda sin hacer una cuenta (Se peude mejorar el codigo aun)
+            changedDollar =
+                "tarjeta" // la primera vez se hara el caluclo por dolar tarjeta asi el usuario no presiona los botones y no queda sin hacer una cuenta (Se peude mejorar el codigo aun)
         }
         binding.etPriceNumber.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -128,24 +136,46 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.buttonCripto.isSelected = false
     }
 
-    private fun radioButton() {
-        binding.rdDollar.isChecked = true
+    private fun setupSpinner() {
+        val options = listOf("ARS", "USD", "EUR")
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, options)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spMoney.adapter = adapter
 
-        binding.rdDollar.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                isDollarChecked = true
-                binding.rdPesos.isChecked = false
-                changedDollar()
+        binding.spMoney.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedCurrency = options[position]
+                when(selectedCurrency){
+                    "ARS" -> changedDollar()
+                    "USD" -> changedDollar()
+                    "EUR" -> changedDollar()
+                }
             }
-        }
-        binding.rdPesos.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
-                isDollarChecked = false
-                binding.rdDollar.isChecked = false
-                changedDollar()
-            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
         }
     }
+
+
+    private fun radioButton() {}
+   //     binding.rdDollar.isChecked = true
+   //
+   //     binding.rdDollar.setOnCheckedChangeListener { buttonView, isChecked ->
+   //         if (isChecked) {
+   //             isDollarChecked = true
+   //              binding.rdPesos.isChecked = false
+   //              changedDollar()
+   //       }
+   //     }
+   //  binding.rdPesos.setOnCheckedChangeListener { buttonView, isChecked ->
+   //       if (isChecked) {
+   //         isDollarChecked = false
+   //          binding.rdDollar.isChecked = false
+   //        changedDollar()
+   //         }
+   //     }
+
 
 
     private fun observers() {
