@@ -108,12 +108,12 @@ class GetDollarUseCase @Inject constructor(
         )
     }
 
-    // Función optimizada para calcular impuestos
+
     private fun calculateTax(base: Double, amount: Double, taxPercentage: Int): Double {
         return (base * amount * taxPercentage) / 100
     }
 
-    // Se asegura de que `formatMount` solo se use en la presentación
+
     private fun formatMount(value: Double): String {
         val formatter = NumberFormat.getNumberInstance(Locale("es")).apply {
             maximumFractionDigits = 2
