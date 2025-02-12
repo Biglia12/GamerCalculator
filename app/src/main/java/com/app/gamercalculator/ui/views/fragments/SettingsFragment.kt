@@ -28,6 +28,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
         setupVieModel()
         observers()
+
+        val versionName = requireContext().packageManager
+            .getPackageInfo(requireContext().packageName, 0).versionName
+
+        binding.tvVersion.text = "V$versionName"
+
     }
 
     private fun setupVieModel() {

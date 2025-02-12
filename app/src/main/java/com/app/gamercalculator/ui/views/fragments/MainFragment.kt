@@ -1,10 +1,12 @@
 package com.app.gamercalculator.ui.views.fragments
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -35,7 +37,19 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onViewCreated(view, savedInstanceState)
         setupNavigation()
 
+        val colorStateList = ColorStateList(
+            arrayOf(
+                intArrayOf(android.R.attr.state_checked),
+                intArrayOf(-android.R.attr.state_checked)
+            ),
+            intArrayOf(
+                ContextCompat.getColor(requireContext(), R.color.color_selected),
+                ContextCompat.getColor(requireContext(), R.color.color_unselected)
+            )
+        )
 
+        binding.bottomsNavigationView.itemIconTintList = colorStateList
+        binding.bottomsNavigationView.itemTextColor = colorStateList
 
     }
 
