@@ -2,11 +2,24 @@
 <resources>
 
     <style name="Theme.GamerCalculator" parent="android:Theme.Material.Light.NoActionBar">
-    <item name="android:forceDarkAllowed">false</item>
+        <item name="android:forceDarkAllowed">false</item>
     </style>
 
     <style name="Theme.Custom.NoActionBar" parent="Theme.Design.NoActionBar">
         <item name="android:forceDarkAllowed">false</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.Material3.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="Theme.MySplash" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:forceDarkAllowed">false</item>
+    <item name="android:windowBackground">@color/prueba2</item>
     </style>
 
 </resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "898845263765",
+    "project_id": "gamercalculatordev",
+    "storage_bucket": "gamercalculatordev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898845263765:android:1cc8c29b7020e64667189c",
+        "android_client_info": {
+          "package_name": "com.app.gamercalculator.debug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr-6TSon7i4gunv-JEGZEE8hkeprbdGbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

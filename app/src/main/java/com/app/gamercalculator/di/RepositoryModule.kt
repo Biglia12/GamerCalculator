@@ -1,5 +1,6 @@
 package com.app.gamercalculator.di
 
+import android.content.Context
 import com.app.gamercalculator.data.network.ApiService
 import com.app.gamercalculator.data.repository.dollar.DollarDataRepository
 import com.app.gamercalculator.data.repository.dollar.dataSource.DollarCloudDataSource
@@ -9,10 +10,12 @@ import com.app.gamercalculator.data.repository.plataforms.PlataformsDataReposito
 import com.app.gamercalculator.data.repository.settings.SettingsDataRepository
 import com.app.gamercalculator.domain.repository.DollarRepository
 import com.app.gamercalculator.domain.repository.PlataformsRepository
+import com.app.gamercalculator.utils.JsonFileReader
 import com.app.gamercalculator.domain.repository.SettingsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -33,8 +36,9 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun providePlataformsRepository(
+        jsonFileReader: JsonFileReader
     ): PlataformsRepository {
-        return PlataformsDataRepository()
+        return PlataformsDataRepository(jsonFileReader)
     }
 
     @Provides
