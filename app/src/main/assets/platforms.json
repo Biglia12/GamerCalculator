@@ -187,7 +187,6 @@
   {
     "imageName": "ic_nvidia",
     "name": "GeForce Now",
-    "money": "Dollar",
     "prices": [
       {
         "type": "Day Pass x1",
