@@ -17,6 +17,8 @@ import com.app.gamercalculator.data.network.Constants
 import com.app.gamercalculator.databinding.FragmentHomeBinding
 import com.app.gamercalculator.domain.entities.DollarTaxes
 import com.app.gamercalculator.ui.viewmodel.HomeViewModel
+import com.app.gamercalculator.utils.AdMobHelper
+import com.google.android.gms.ads.AdRequest
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -48,7 +50,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         restoreButtonState()
         events()
         observers()
+        initLoadAds()
 
+    }
+
+    private fun initLoadAds() {
+        AdMobHelper.loadBanner(binding.adBanner)
     }
 
     private fun restoreButtonState() {
