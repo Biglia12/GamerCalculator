@@ -1,37 +1,32 @@
 package com.app.gamercalculator.ui.views.adapters
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.app.gamercalculator.R
 import com.app.gamercalculator.data.network.Constants
 import com.app.gamercalculator.databinding.SettingsItemsBinding
 import com.app.gamercalculator.domain.entities.Settings
 import com.google.zxing.BarcodeFormat
-import com.google.zxing.EncodeHintType
-import com.google.zxing.MultiFormatWriter
 import com.journeyapps.barcodescanner.BarcodeEncoder
 
 
-class SettingsAdapter(private val context: Context, private val settingsList: List<Settings>) :
+class SettingsAdapter(private val context: Context, private val settingsList: List<Settings>, private val listener: OnActionItemListener) :
     RecyclerView.Adapter<SettingsViewHolder>() {
 
     data class App(val name: String, val customLink: String)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SettingsViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return SettingsViewHolder(layoutInflater.inflate(R.layout.settings_items, parent, false))
+        return SettingsViewHolder(layoutInflater.inflate(R.layout.settings_items, parent, false),listener)
     }
 
     override fun onBindViewHolder(holder: SettingsViewHolder, position: Int) {
@@ -41,9 +36,14 @@ class SettingsAdapter(private val context: Context, private val settingsList: Li
 
     override fun getItemCount(): Int = settingsList.size
 
+    interface OnActionItemListener {
+        fun adMob()
+        fun dialogRateApp()
+    }
+
 }
 
-class SettingsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+ class SettingsViewHolder(view: View, val listener: SettingsAdapter.OnActionItemListener) : RecyclerView.ViewHolder(view) {
 
     val binding = SettingsItemsBinding.bind(view)
 
@@ -54,13 +54,13 @@ class SettingsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             when (settingsModel.name) {
                 context.resources.getString(R.string.share) -> {
                     val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                        type ="text/plain"
+                        type = "text/plain"
                         putExtra(
                             Intent.EXTRA_TEXT,
                             "Mira Esta App: ${Constants.SHARE_APP}"
                         )
                     }
-                    context.startActivity(Intent.createChooser(shareIntent,"Compartir Via"))
+                    context.startActivity(Intent.createChooser(shareIntent, "Compartir Via"))
                 }
 
                 context.resources.getString(R.string.qr) -> {
@@ -76,19 +76,20 @@ class SettingsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 }
 
                 context.resources.getString(R.string.about) -> {
-                    AlertDialog.Builder(context)
-                        .setTitle(context.resources.getString(R.string.thanks))
-                        .setMessage(context.resources.getString(R.string.qualify))
-                        .setPositiveButton("Aceptar") { dialog, which ->
-                        }
-                        .show()
-               }
+                    listener.dialogRateApp()
+                }
+
+                context.resources.getString(R.string.announcement) -> {
+                    listener.adMob()
+                }
 
                 context.resources.getString(R.string.other_apps) -> {
                     val url = Constants.URL_PLAYSTORE_APPS
-                    openLink(context,url)
-                }else -> {
-                    Toast.makeText(context,"opcion no definida", Toast.LENGTH_SHORT).show()
+                    openLink(context, url)
+                }
+
+                else -> {
+                    Toast.makeText(context, "opcion no definida", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -114,7 +115,12 @@ class SettingsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private fun generateQRCode(): Bitmap? {
         return try {
             val barcodeEncoder = BarcodeEncoder()
-            barcodeEncoder.encodeBitmap(Constants.URL_PLAYSTORE_APPS, BarcodeFormat.QR_CODE, 712, 712)
+            barcodeEncoder.encodeBitmap(
+                Constants.URL_PLAYSTORE_APPS,
+                BarcodeFormat.QR_CODE,
+                712,
+                712
+            )
         } catch (e: Exception) {
             e.printStackTrace()
             null
@@ -125,4 +131,6 @@ class SettingsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
         context.startActivity(intent)
     }
+
+
 }

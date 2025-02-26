@@ -1,46 +1,48 @@
 package com.app.gamercalculator.utils
 
+import android.app.Activity
 import android.content.Context
 import android.view.View
+import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 object AdMobHelper {
 
+    var mInterstitialAd: InterstitialAd? = null
+    val adRequest = AdRequest.Builder().build()
+
     fun loadBanner(adView: AdView) {
-        val adRequest = AdRequest.Builder().build()
+
         adView.loadAd(adRequest)
 
         adView.adListener = object : AdListener() {
-            override fun onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-            }
-
-            override fun onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-            }
-
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                // Code to be executed when an ad request fails.
-            }
-
-            override fun onAdImpression() {
-                // Code to be executed when an impression is recorded
-                // for an ad.
-            }
 
             override fun onAdLoaded() {
                 adView.visibility = View.VISIBLE
             }
-
-            override fun onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
-            }
         }
+    }
+
+    fun loadInterstitial(context: Context){
+
+        InterstitialAd.load(context,"ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                mInterstitialAd = null
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                mInterstitialAd = interstitialAd
+            }
+        })
+    }
+
+    fun showAds(context: Activity){
+        mInterstitialAd?.show(context)
+        loadInterstitial(context)
     }
 }

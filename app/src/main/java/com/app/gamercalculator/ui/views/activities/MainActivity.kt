@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.app.gamercalculator.R
 import com.app.gamercalculator.databinding.ActivityMainBinding
+import com.app.gamercalculator.utils.AdMobHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.container_nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-
+        AdMobHelper.loadInterstitial(this)
 
     }
 }
