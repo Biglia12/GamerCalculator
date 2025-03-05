@@ -41,9 +41,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding = FragmentHomeBinding.bind(view)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            //delay(2000)
+            delay(2000)
             viewModel.getDollarFromApi()
-            //viewModel.getPlataformsDollar()
         }
         restoreButtonState()
         events()
