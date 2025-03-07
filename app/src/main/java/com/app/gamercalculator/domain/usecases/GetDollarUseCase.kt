@@ -4,10 +4,7 @@ import com.app.gamercalculator.domain.entities.Dollar
 import com.app.gamercalculator.domain.entities.DollarTaxes
 import com.app.gamercalculator.domain.repository.DollarRepository
 import com.app.gamercalculator.domain.utils.DateUtils
-import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
-import java.text.SimpleDateFormat
 import java.util.Locale
 import javax.inject.Inject
 
@@ -29,7 +26,7 @@ class GetDollarUseCase @Inject constructor(
         val dollarOfficial = repository.getDollarOfficial()
         val inputAmount = inputNumber.toDouble()
 
-        val dollarValue = dollarOfficial.sell * inputAmount
+        val dollarValue = dollarOfficial.buy * inputAmount
         val taxIva = calculateTax(dollarOfficial.buy, inputAmount, 21)
         val taxArca = calculateTax(dollarOfficial.buy, inputAmount, 30)
         val mountTotal = if (isDollarChecked) dollarCard.sell * inputAmount else dollarCard.sell + inputAmount
@@ -49,16 +46,20 @@ class GetDollarUseCase @Inject constructor(
         val dollarMep = repository.getDollarMep()
         val inputAmount = inputNumber.toDouble()
 
-        val countDollarMep = dollarMep.sell * inputAmount
-        val countDollarPesos = inputAmount / dollarMep.sell
+        val countDollarMepWithOutTaxes = dollarMep.sell * inputAmount
+        val taxIva = calculateTax(dollarMep.sell, inputAmount, 21)
+        val mountTotalWithIvaDollar = countDollarMepWithOutTaxes + taxIva
+
+        val taxIvaPesos = calculateTax(inputAmount, 21)
+        val mountTotalWithIvaPesos = inputAmount + taxIvaPesos
 
         return DollarTaxes(
             name = dollarMep.name,
             date = formatDate(dollarMep.date),
-            dollarValue = formatMount(if (isDollarChecked) countDollarMep else inputAmount),
-            taxIva = "0.00",
+            dollarValue = formatMount(if (isDollarChecked) countDollarMepWithOutTaxes else inputAmount),
+            taxIva = if (isDollarChecked) formatMount(taxIva) else formatMount(taxIvaPesos),
             taxArca = "0.00",
-            mountTotal = formatMount(if (isDollarChecked) countDollarMep else countDollarPesos),
+            mountTotal = formatMount(if (isDollarChecked) mountTotalWithIvaDollar else mountTotalWithIvaPesos),
             mountTotalTaxes = "0.00"
         )
     }
@@ -68,7 +69,6 @@ class GetDollarUseCase @Inject constructor(
         val inputAmount = inputNumber.toDouble()
 
         val countDollarCripto = dollarCripto.sell * inputAmount
-        val countPesosCripto = inputAmount / dollarCripto.sell
 
         return DollarTaxes(
             name = dollarCripto.name,
@@ -76,7 +76,7 @@ class GetDollarUseCase @Inject constructor(
             dollarValue = formatMount(if (isDollarChecked) countDollarCripto else inputAmount),
             taxIva = "0.00",
             taxArca = "0.00",
-            mountTotal = formatMount(if (isDollarChecked) countDollarCripto else countPesosCripto),
+            mountTotal = formatMount(if (isDollarChecked) countDollarCripto else inputAmount),
             mountTotalTaxes = "0.00"
         )
     }
@@ -111,6 +111,10 @@ class GetDollarUseCase @Inject constructor(
 
     private fun calculateTax(base: Double, amount: Double, taxPercentage: Int): Double {
         return (base * amount * taxPercentage) / 100
+    }
+
+    private fun calculateTax(amount: Double, taxPercentage: Int): Double {
+        return (amount * taxPercentage) / 100
     }
 
 

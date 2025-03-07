@@ -53,17 +53,10 @@ class HomeViewModel @Inject constructor(
     fun getDollarFromApi() {
         viewModelScope.launch(Dispatchers.IO) {
             if (!isDataLoaded) {
+                _isLoading.postValue(true)
                 isDataLoaded = true
-                _isLoading.postValue(true) // Activa el loading
-                val result = kotlin.runCatching {
-                    getDollarUseCase.getDollarFromApi() // Llama al caso de uso
-                }
+                getDollarUseCase.getDollarFromApi()
                 _isLoading.postValue(false) // Desactiva el loading
-
-                result.onFailure { exception ->
-                    Log.e("Error", "Error fetching dollar: ${exception.message}")
-                }
-                Log.i("SuccessHomeViewmodel", "Success fetching dollar")
             }
 
         }

@@ -19,6 +19,7 @@ import com.app.gamercalculator.domain.entities.DollarTaxes
 import com.app.gamercalculator.ui.viewmodel.HomeViewModel
 import com.app.gamercalculator.utils.AdMobHelper
 import com.google.android.gms.ads.AdRequest
+import com.app.gamercalculator.utils.isNetworkAvailable
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -42,11 +43,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
 
+
         viewLifecycleOwner.lifecycleScope.launch {
-            //delay(2000)
-            viewModel.getDollarFromApi()
-            //viewModel.getPlataformsDollar()
+            delay(2000)
+            if (requireContext().isNetworkAvailable(true)) {
+                viewModel.getDollarFromApi()
+            } else {
+                binding.containerLoading.visibility = View.GONE
+            }
         }
+
         restoreButtonState()
         events()
         observers()
@@ -84,7 +90,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun etWatcher() {
         if (firstTimeDollarCard) {
             firstTimeDollarCard = false
-            changedDollar = "tarjeta" // la primera vez se hara el caluclo por dolar tarjeta asi el usuario no presiona los botones y no queda sin hacer una cuenta (Se peude mejorar el codigo aun)
+            changedDollar =
+                "tarjeta" // la primera vez se hara el caluclo por dolar tarjeta asi el usuario no presiona los botones y no queda sin hacer una cuenta (Se peude mejorar el codigo aun)
         }
         binding.etPriceNumber.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
