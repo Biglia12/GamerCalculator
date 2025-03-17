@@ -16,7 +16,7 @@
         android:layout_marginTop="8dp"
         ads:adSize="BANNER"
         android:visibility="gone"
-        ads:adUnitId="ca-app-pub-3940256099942544/9214589741"
+        ads:adUnitId="@string/ad_unit_id"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

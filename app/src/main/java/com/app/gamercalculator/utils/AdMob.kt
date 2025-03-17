@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.view.View
 import androidx.fragment.app.FragmentActivity
+import com.app.gamercalculator.R
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -30,7 +31,7 @@ object AdMobHelper {
 
     fun loadInterstitial(context: Context){
 
-        InterstitialAd.load(context,"ca-app-pub-3940256099942544/1033173712", adRequest, object : InterstitialAdLoadCallback() {
+        InterstitialAd.load(context,context.resources.getString(R.string.ad_unit_id_interstitial), adRequest, object : InterstitialAdLoadCallback() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 mInterstitialAd = null
             }
