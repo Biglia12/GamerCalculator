@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="crypto">Crypto dev</string>
+
+    <!-- AddMob (publicidad) -->
+    <string name="ad_unit_id">ca-app-pub-8711522994433469/8971044757</string>
+    <string name="ad_unit_id_interstitial">ca-app-pub-8711522994433469/9381654353</string>
+
+
+
+</resources>

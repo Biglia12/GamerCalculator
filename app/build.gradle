@@ -8,6 +8,16 @@ plugins {
 }
 
 android {
+
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword '42987502'
+            storeFile file("$rootDir/key/keystore.jks")
+            storePassword '42987502'
+        }
+    }
+
     namespace 'com.app.gamercalculator'
     compileSdk 35
 
@@ -31,20 +41,21 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 
     flavorDimensions "version"
-   /* productFlavors {
-        dev {
-            applicationIdSuffix ".dev"
-            versionNameSuffix "dev"
-        }
+    /* productFlavors {
+         dev {
+             applicationIdSuffix ".dev"
+             versionNameSuffix "dev"
+         }
 
-        prod {
-            applicationIdSuffix ".prod"
-        }
-    }*/
+         release {
+             applicationIdSuffix ".release"
+         }
+     }*/
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
