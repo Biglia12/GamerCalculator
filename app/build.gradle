@@ -8,6 +8,16 @@ plugins {
 }
 
 android {
+
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword '42987502'
+            storeFile file("$rootDir/key/keystore.jks")
+            storePassword '42987502'
+        }
+    }
+
     namespace 'com.app.gamercalculator'
     compileSdk 35
 
@@ -31,20 +41,21 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 
     flavorDimensions "version"
-   /* productFlavors {
-        dev {
-            applicationIdSuffix ".dev"
-            versionNameSuffix "dev"
-        }
+    /* productFlavors {
+         dev {
+             applicationIdSuffix ".dev"
+             versionNameSuffix "dev"
+         }
 
-        prod {
-            applicationIdSuffix ".prod"
-        }
-    }*/
+         release {
+             applicationIdSuffix ".release"
+         }
+     }*/
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -77,6 +88,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7'
     implementation 'androidx.fragment:fragment-ktx:1.8.5'
     implementation 'androidx.databinding:databinding-runtime:8.7.3'
+    implementation 'com.google.android.datatransport:transport-runtime:3.1.9'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -90,8 +102,13 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
 
+    //AdMob
+    implementation 'com.google.android.gms:play-services-ads:22.0.0'
+
     //QR ZXing
     implementation 'com.google.zxing:core:3.5.2'
+
+    //Journeyapps
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
     //Firebase
@@ -100,6 +117,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics:19.2.1'
     implementation platform('com.google.firebase:firebase-bom:33.7.0')
 
+    //Dagger
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
@@ -108,7 +126,7 @@ dependencies {
     kapt "androidx.room:room-compiler:2.6.1"
     implementation "androidx.room:room-runtime:2.6.1"
 
-    // Coroutines dependencies
+    //Coroutines dependencies
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0"
 

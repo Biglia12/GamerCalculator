@@ -43,8 +43,8 @@ fun Context.showErrorDialog(title: String, description: String, dismissAction: (
     alertDialogBuilder
         .setMessage(description)
         .setCancelable(false)
-        .setPositiveButton("Si", DialogInterface.OnClickListener { dialog, id ->
+        .setPositiveButton("OK", DialogInterface.OnClickListener { dialog, id ->
 
         })
-        .setNegativeButton("No") { dialog, id -> dialog.cancel() }.create().show()
+        .create().show()
 }

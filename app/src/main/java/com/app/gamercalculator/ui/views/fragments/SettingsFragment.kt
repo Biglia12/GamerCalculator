@@ -1,5 +1,6 @@
 package com.app.gamercalculator.ui.views.fragments
 
+import android.app.AlertDialog
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.util.Log
@@ -10,10 +11,11 @@ import com.app.gamercalculator.R
 import com.app.gamercalculator.databinding.FragmentSettingsBinding
 import com.app.gamercalculator.ui.viewmodel.SettingsViewModel
 import com.app.gamercalculator.ui.views.adapters.SettingsAdapter
+import com.app.gamercalculator.utils.AdMobHelper
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingsFragment : Fragment(R.layout.fragment_settings) {
+class SettingsFragment : Fragment(R.layout.fragment_settings), SettingsAdapter.OnActionItemListener {
 
     private val viewModel: SettingsViewModel by viewModels()
     private lateinit var binding: FragmentSettingsBinding
@@ -47,9 +49,24 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
                 name = i.name
             }
             Log.i("Settings", settings.toString())
+            val adapter =  SettingsAdapter(requireContext(),settings, this)
             binding.rvSettings.layoutManager = LinearLayoutManager(requireContext())
-            binding.rvSettings.adapter = SettingsAdapter(requireContext(),settings)
+            binding.rvSettings.adapter = adapter
         }
     }
+
+    override fun adMob() {
+        AdMobHelper.showAds(requireActivity())
+    }
+
+    override fun dialogRateApp() {
+        AlertDialog.Builder(context)
+            .setTitle(resources.getString(R.string.thanks))
+            .setMessage(resources.getString(R.string.qualify))
+            .setPositiveButton("Aceptar") { dialog, which ->
+            }
+            .show()
+    }
+
 
 }
