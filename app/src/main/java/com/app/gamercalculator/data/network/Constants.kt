@@ -10,4 +10,6 @@ object Constants {
 
     const val SHARE_APP = "Link De La App"
 
+    const val MAIL_CONTACT = "sfeal12@gmail.com"
+
 }

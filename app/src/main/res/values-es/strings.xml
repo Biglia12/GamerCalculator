@@ -4,7 +4,7 @@
     <string name="app_name">CalculadoraGamer</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="gamer_calculator">Claculadora Gamer</string>
+    <string name="gamer_calculator">Calculadora Gamer</string>
     <string name="store_in_dollars">Tienda en Dolares</string>
     <string name="store_in_pesos">Tienda en Pesos</string>
     <string name="choose_pay">Elegi la manera de pagar en tu plataforma</string>

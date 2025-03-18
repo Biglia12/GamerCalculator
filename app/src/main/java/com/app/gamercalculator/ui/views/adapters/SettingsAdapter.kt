@@ -70,7 +70,7 @@ class SettingsAdapter(private val context: Context, private val settingsList: Li
                 context.resources.getString(R.string.contact) -> {
                     val intent = Intent(Intent.ACTION_SENDTO)
                     intent.setData(Uri.parse("mailto:"))
-                    intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("mahendrarajdhami@gmail.com"))
+                    intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(Constants.MAIL_CONTACT))
                     intent.putExtra(Intent.EXTRA_SUBJECT, "")
                     context.startActivity(Intent.createChooser(intent, "Send Email Using..."))
                 }
