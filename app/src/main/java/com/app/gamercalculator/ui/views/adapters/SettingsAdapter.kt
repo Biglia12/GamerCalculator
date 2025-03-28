@@ -67,6 +67,11 @@ class SettingsAdapter(private val context: Context, private val settingsList: Li
                     showQRCodeDialog(context)
                 }
 
+                context.resources.getString(R.string.rate)  -> {
+                    val url = Constants.SHARE_APP
+                    openLink(context, url)
+                }
+
                 context.resources.getString(R.string.contact) -> {
                     val intent = Intent(Intent.ACTION_SENDTO)
                     intent.setData(Uri.parse("mailto:"))
@@ -116,7 +121,7 @@ class SettingsAdapter(private val context: Context, private val settingsList: Li
         return try {
             val barcodeEncoder = BarcodeEncoder()
             barcodeEncoder.encodeBitmap(
-                Constants.URL_PLAYSTORE_APPS,
+                Constants.SHARE_APP,
                 BarcodeFormat.QR_CODE,
                 712,
                 712
