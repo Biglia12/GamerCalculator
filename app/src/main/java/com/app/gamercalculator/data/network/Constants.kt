@@ -8,7 +8,7 @@ object Constants {
 
     const val URL_PLAYSTORE_APPS = "https://play.google.com/store/apps/developer?id=SFEApps&hl=es_419"
 
-    const val SHARE_APP = "Link De La App"
+    const val SHARE_APP = "https://play.google.com/store/apps/details?id=com.app.gamercalculator&pcampaignid=web_share"
 
     const val MAIL_CONTACT = "sfeal12@gmail.com"
 
