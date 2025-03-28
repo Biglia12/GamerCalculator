@@ -2,6 +2,9 @@
     <string name="app_name">Caluladora Gamer</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="wrong_updating">Something went wrong updating</string>
+    <string name="download_successful">Download Successful, Restarting app</string>
+
     <string name="gamer_calculator">Gamer Calculator</string>
     <string name="store_in_dollars">Store in Dollars</string>
     <string name="store_in_pesos">Store in Pesos</string>
