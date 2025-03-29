@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CalculadoraGamer</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="wrong_updating">Algo ha salido mal en la actualizacion</string>
+    <string name="download_successful">Actualizacion Exitosa, Reiniciando app</string>
+
+    <string name="gamer_calculator">Calculadora Gamer</string>
+    <string name="store_in_dollars">Tienda en Dolares</string>
+    <string name="store_in_pesos">Tienda en Pesos</string>
+    <string name="choose_pay">Elegi la manera de pagar en tu plataforma</string>
+    <string name="card">Tarjeta</string>
+    <string name="mep">MEP</string>
+    <string name="crypto">Crypto</string>
+    <string name="ars">ARS</string>
+    <string name="usd">USD</string>
+    <string name="update_date">Fecha de Actualizacion:</string>
+    <string name="iva">IVA 21%: </string>
+    <string name="perception">RG ARCA 30%:</string>
+    <string name="final_price">Precio Final:</string>
+    <string name="calculator">Calculadora</string>
+    <string name="subscription">Suscripciones</string>
+    <string name="settings">Configuracion</string>
+    <string name="total_taxes">Impuestos Totales:</string>
+    <string name="without_taxes">Sin Impuestos:</string>
+    <string name="hint">$0.00</string>
+
+    <string name="share">Compartir App</string>
+    <string name="qr">Compartir App Con QR</string>
+    <string name="rate">Calificar App</string>
+    <string name="contact">Contactanos</string>
+    <string name="about">Acerca De</string>
+    <string name="other_apps">Nuestras Otras Apps</string>
+    <string name="announcement">Para Ayudarnos Mira Este Breve Anuncio</string>
+
+    <string name="qualify">Si te gusto la app, por favor deja una clasificacion positiva o un comentario en Google Play.</string>
+    <string name="thanks">Gracias Por Utilizar Nuestra App</string>
+
+</resources>

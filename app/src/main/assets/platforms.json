@@ -1,0 +1,255 @@
+[
+  {
+    "imageName": "ic_ea",
+    "name": "EA Play",
+    "money": "Dollar",
+    "prices": [
+      {
+        "type": "Standard",
+        "amounts": [
+          {
+            "period": "Subscripción Mensual",
+            "price": 5.99
+          },
+          {
+            "period": "Subscripción Anual",
+            "price": 39.99
+          }
+        ]
+      },
+      {
+        "type": "Pro",
+        "amounts": [
+          {
+            "period": "Subscripción Mensual",
+            "price": 16.99
+          },
+          {
+            "period": "Subscripción Anual",
+            "price": 119.99
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imageName": "ic_playstation",
+    "name": "PlayStation Plus",
+    "money": "Dollar",
+    "prices": [
+      {
+        "type": "Deluxe",
+        "amounts": [
+          {
+            "period": "Subscripción Mensual",
+            "price": 11.99
+          },
+          {
+            "period": "Subscripción 3 meses",
+            "price": 31.99
+          },
+          {
+            "period": "Subscripción Anual",
+            "price": 106.99
+          }
+        ]
+      },
+      {
+        "type": "Extra",
+        "amounts": [
+          {
+            "period": "Subscripción Mensual",
+            "price": 10.49
+          },
+          {
+            "period": "Subscripción 3 meses",
+            "price": 27.99
+          },
+          {
+            "period": "Subscripción Anual",
+            "price": 93.99
+          }
+        ]
+      },
+      {
+        "type": "Essential",
+        "amounts": [
+          {
+            "period": "Subscripción Mensual",
+            "price": 6.99
+          },
+          {
+            "period": "Subscripción 3 meses",
+            "price": 16.99
+          },
+          {
+            "period": "Subscripción Anual",
+            "price": 54.99
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imageName": "ic_xbox",
+    "name": "Xbox Game Pass",
+    "money": "Pesos",
+    "prices": [
+      {
+        "type": "PC",
+        "amounts": [
+          {
+            "period": "Subscripción Mensual",
+            "price": 10708
+          }
+        ]
+      },
+      {
+        "type": "Core",
+        "amounts": [
+          {
+            "period": "Subscripción Mensual",
+            "price": 9178
+          }
+        ]
+      },
+      {
+        "type": "Standard",
+        "amounts": [
+          {
+            "period": "Subscripción Mensual",
+            "price": 13768
+          }
+        ]
+      },
+      {
+        "type": "Ultimate",
+        "amounts": [
+          {
+            "period": "Subscripción Mensual",
+            "price": 16828
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imageName": "ic_nintendo",
+    "name": "Nintendo Switch Online",
+    "money": "Pesos",
+    "prices": [
+      {
+        "type": "Individual",
+        "amounts": [
+          {
+            "period": "Subscripción Mensual",
+            "price": 5874
+          },
+          {
+            "period": "Subscripción 3 meses",
+            "price": 11749
+          },
+          {
+            "period": "Subscripción Anual",
+            "price": 29405
+          }
+        ]
+      },
+      {
+        "type": "Individual + Expansion Pack",
+        "amounts": [
+          {
+            "period": "Subscripción Anual",
+            "price": 73530
+          }
+        ]
+      },
+      {
+        "type": "Familiar",
+        "amounts": [
+          {
+            "period": "Subscripción Anual",
+            "price": 51468
+          }
+        ]
+      },
+      {
+        "type": "Familiar + Expansion Pack",
+        "amounts": [
+          {
+            "period": "Subscripción Anual",
+            "price": 117655
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "imageName": "ic_nvidia",
+    "name": "GeForce Now",
+    "prices": [
+      {
+        "type": "Day Pass x1",
+        "amounts": [
+          {
+            "period": "Subscripción 1 dia",
+            "price": 5700
+          }
+        ]
+      },
+      {
+        "type": "Day Pass x2",
+        "amounts": [
+          {
+            "period": "Subscripción 2 dias",
+            "price": 11400
+          }
+        ]
+      },
+      {
+        "type": "Day Pass x3",
+        "amounts": [
+          {
+            "period": "Subscripción 3 días",
+            "price": 17100
+          }
+        ]
+      },
+      {
+        "type": "Priority",
+        "amounts": [
+          {
+            "period": "Subscripción Mensual",
+            "price": 19000
+          },
+          {
+            "period": "Subscripción 6 meses",
+            "price": 102600
+          },
+          {
+            "period": "Subscripción Anual",
+            "price": 190000
+          }
+        ]
+      },
+      {
+        "type": "Extended Pro",
+        "amounts": [
+          {
+            "period": "Subscripción Mensual",
+            "price": 38000
+          }
+        ]
+      },
+      {
+        "type": "Extended Ultra",
+        "amounts": [
+          {
+            "period": "Subscripción Mensual",
+            "price": 76000
+          }
+        ]
+      }
+    ]
+  }
+]

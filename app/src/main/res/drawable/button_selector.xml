@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Estado seleccionado -->
+    <item android:state_selected="true" android:color="#25254D"/> <!-- Color rojo cuando está seleccionado -->
+
+    <!-- Estado presionado -->
+    <item android:state_pressed="true" android:color="#252540"/> <!-- Color cuando está presionado (naranja) -->
+
+    <!-- Estado normal -->
+    <item android:color="#3b3d72"/> <!-- Color por defecto (gris) -->
+</selector>
