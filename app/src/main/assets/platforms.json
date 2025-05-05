@@ -42,15 +42,15 @@
         "amounts": [
           {
             "period": "Subscripción Mensual",
-            "price": 11.99
+            "price": 13.99
           },
           {
             "period": "Subscripción 3 meses",
-            "price": 31.99
+            "price": 39.99
           },
           {
             "period": "Subscripción Anual",
-            "price": 106.99
+            "price": 124.99
           }
         ]
       },
@@ -59,15 +59,15 @@
         "amounts": [
           {
             "period": "Subscripción Mensual",
-            "price": 10.49
+            "price": 11.99
           },
           {
             "period": "Subscripción 3 meses",
-            "price": 27.99
+            "price": 33.99
           },
           {
             "period": "Subscripción Anual",
-            "price": 93.99
+            "price": 107.99
           }
         ]
       },
@@ -76,15 +76,15 @@
         "amounts": [
           {
             "period": "Subscripción Mensual",
-            "price": 6.99
+            "price": 7.99
           },
           {
             "period": "Subscripción 3 meses",
-            "price": 16.99
+            "price": 20.99
           },
           {
             "period": "Subscripción Anual",
-            "price": 54.99
+            "price": 64.99
           }
         ]
       }

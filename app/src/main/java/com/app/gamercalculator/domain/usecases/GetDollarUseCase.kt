@@ -60,7 +60,7 @@ class GetDollarUseCase @Inject constructor(
             taxIva = if (isDollarChecked) formatMount(taxIva) else formatMount(taxIvaPesos),
             taxArca = "0.00",
             mountTotal = formatMount(if (isDollarChecked) mountTotalWithIvaDollar else mountTotalWithIvaPesos),
-            mountTotalTaxes = "0.00"
+            mountTotalTaxes = formatMount(if (isDollarChecked) taxIva else taxIvaPesos)
         )
     }
 
@@ -88,23 +88,21 @@ class GetDollarUseCase @Inject constructor(
         // Cálculo en dólares
         val taxIvaDollar = calculateTax(dollarOfficial.sell, inputAmount, 21)
         val taxArcaDollar = calculateTax(dollarOfficial.sell, inputAmount, 30)
-        val sumTaxesDollar = dollarOfficial.sell * inputAmount + taxIvaDollar + taxArcaDollar
-        val sumTaxesTotalDollar = taxIvaDollar + taxArcaDollar
+        val sumTaxesDollar = dollarOfficial.sell * inputAmount + taxIvaDollar
 
         // Cálculo en pesos
         val taxIvaPesos = calculateTax(inputAmount, 1.0, 21)
         val taxArcaPesos = calculateTax(inputAmount, 1.0, 30)
-        val sumTaxesPesos = inputAmount + taxIvaPesos + taxArcaPesos
-        val sumTaxesTotalPesos = taxIvaPesos + taxArcaPesos
+        val sumTaxesPesos = inputAmount + taxIvaPesos
 
         return DollarTaxes(
             name = dollarOfficial.name,
             date = formatDate(dollarOfficial.date),
             dollarValue = formatMount(if (isDollarChecked) dollarOfficial.sell * inputAmount else inputAmount),
             taxIva = formatMount(if (isDollarChecked) taxIvaDollar else taxIvaPesos),
-            taxArca = formatMount(if (isDollarChecked) taxArcaDollar else taxArcaPesos),
+            taxArca = "0.00",
             mountTotal = formatMount(if (isDollarChecked) sumTaxesDollar else sumTaxesPesos),
-            mountTotalTaxes = formatMount(if (isDollarChecked) sumTaxesTotalDollar else sumTaxesTotalPesos)
+            mountTotalTaxes = formatMount(if (isDollarChecked) taxIvaDollar else taxIvaPesos)
         )
     }
 
