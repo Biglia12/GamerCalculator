@@ -193,15 +193,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setDollars(it: DollarTaxes) {
-        val resultPriceIva = Constants.SYMBOL_DOLLAR + it.taxIva.toString()
-        val resultPriceArca = Constants.SYMBOL_DOLLAR + it.taxArca.toString()
-        val totalWithOutTaxes = Constants.SYMBOL_DOLLAR + it.dollarValue.toString()
-        val totalTaxes = Constants.SYMBOL_DOLLAR + it.mountTotalTaxes.toString()
-        val totalPrice = Constants.SYMBOL_DOLLAR + it.mountTotal.toString()
+        val resultPriceIva = Constants.SYMBOL_DOLLAR + it.taxIva
+        val resultPriceArca = Constants.SYMBOL_DOLLAR + it.taxArca
+        val totalWithOutTaxes = Constants.SYMBOL_DOLLAR + it.dollarValue
+        val totalTaxes = Constants.SYMBOL_DOLLAR + it.mountTotalTaxes
+        val totalPrice = Constants.SYMBOL_DOLLAR + it.mountTotal
 
         binding.dateValue.text = it.date
         binding.resultPriceIva.text = resultPriceIva
-        binding.resultPriceArca.text = resultPriceArca
+        //binding.resultPriceArca.text = resultPriceArca
         binding.totalTaxes.text = totalTaxes
         binding.totalSinTaxes.text = totalWithOutTaxes
         binding.totalPrice.text = totalPrice

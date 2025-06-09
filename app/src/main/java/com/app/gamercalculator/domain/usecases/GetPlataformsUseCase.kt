@@ -26,7 +26,7 @@ class GetPlataformsUseCase @Inject constructor(
                             amounts = priceItem.amounts.map { amount ->
                                 val taxIvaDollar = calculateTax(dollar.sell, amount.price, 21)
                                 val taxArcaDollar = calculateTax(dollar.sell, amount.price, 30)
-                                val sumTaxesPesos = amount.price * dollar.sell + taxArcaDollar + taxIvaDollar
+                                val sumTaxesPesos = amount.price * dollar.sell + taxIvaDollar
                                 amount.copy(price = sumTaxesPesos)
                             }
                         )
