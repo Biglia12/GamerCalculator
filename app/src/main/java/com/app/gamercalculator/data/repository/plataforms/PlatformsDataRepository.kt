@@ -2,19 +2,22 @@ package com.app.gamercalculator.data.repository.plataforms
 
 import com.app.gamercalculator.R
 import com.app.gamercalculator.data.model.Platform
-import com.app.gamercalculator.domain.entities.Dollar
+import com.app.gamercalculator.data.repository.dollar.mappers.DollarDataMapper
+import com.app.gamercalculator.data.repository.plataforms.dataSource.PlatformCloudDataSource
 import com.app.gamercalculator.domain.entities.Plataforms
 import com.app.gamercalculator.domain.repository.PlataformsRepository
 import com.app.gamercalculator.utils.JsonFileReader
-import com.google.common.reflect.TypeToken
-import com.google.gson.Gson
-import java.io.InputStreamReader
 import javax.inject.Inject
 
-class PlataformsDataRepository @Inject constructor(val jsonFileReader: JsonFileReader) : PlataformsRepository {
+class PlatformsDataRepository @Inject constructor(val cloudDataSource: PlatformCloudDataSource, val jsonFileReader: JsonFileReader) : PlataformsRepository {
 
 
-    override fun getPlataforms(): List<Platform> {
+    override suspend fun getPlataforms(): List<Platform> {
+        val response = cloudDataSource.getPlatforms()
+        //val data = response.map { dataMapper.mapToVo(it) }
+        /*roomDataSource.cleanTable()
+        roomDataSource.insert(data)*/
+        //return response.toList()
         return jsonFileReader.readJsonFromAssets("platforms.json")
     }
 
