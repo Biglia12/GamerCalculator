@@ -1,22 +1,22 @@
 package com.app.gamercalculator.domain.usecases
 
-import com.app.gamercalculator.R
 import com.app.gamercalculator.data.model.Platform
-import com.app.gamercalculator.domain.entities.Dollar
 import com.app.gamercalculator.domain.entities.Plataforms
 import com.app.gamercalculator.domain.repository.DollarRepository
-import com.app.gamercalculator.domain.repository.PlataformsRepository
-import java.text.NumberFormat
-import java.util.Locale
+import com.app.gamercalculator.domain.repository.PlatformsRepository
 import javax.inject.Inject
 
-class GetPlataformsUseCase @Inject constructor(
-    val plataformsRepository: PlataformsRepository,
+class GetPlatformsUseCase @Inject constructor(
+    val platformsRepository: PlatformsRepository,
     val dollarRepository: DollarRepository
 ) {
 
-    suspend fun getPlataforms(): List<Platform> {
-        val platforms = plataformsRepository.getPlataforms()
+    suspend fun getPlatformsFromApi() {
+        platformsRepository.getPlatformsFromApi()
+    }
+
+    suspend fun getPlatforms(): List<Platform> {
+        val platforms = platformsRepository.getAllPlatformsFromDatabase()
         val dollar = dollarRepository.getDollarOfficial()
         return platforms.map { platform ->
             if (platform.money == "Dollar") {
@@ -38,13 +38,6 @@ class GetPlataformsUseCase @Inject constructor(
         }
     }
 
-    fun getPlataformsDollar(): List<Plataforms> {
-        return plataformsRepository.getPlataformsDollar()
-    }
-
-    fun getPlataformsPesos(): List<Plataforms> {
-        return plataformsRepository.getPlataformsPesos()
-    }
 
     private fun calculateTax(base: Double, amount: Double, taxPercentage: Int): Double {
         return (base * amount * taxPercentage) / 100

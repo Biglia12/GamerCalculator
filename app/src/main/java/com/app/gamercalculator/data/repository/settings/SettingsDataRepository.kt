@@ -1,7 +1,6 @@
 package com.app.gamercalculator.data.repository.settings
 
 import com.app.gamercalculator.R
-import com.app.gamercalculator.domain.entities.Plataforms
 import com.app.gamercalculator.domain.entities.Settings
 import com.app.gamercalculator.domain.repository.SettingsRepository
 import javax.inject.Inject

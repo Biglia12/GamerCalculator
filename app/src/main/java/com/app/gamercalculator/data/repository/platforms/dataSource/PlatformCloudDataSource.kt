@@ -1,9 +1,7 @@
-package com.app.gamercalculator.data.repository.plataforms.dataSource
+package com.app.gamercalculator.data.repository.platforms.dataSource
 
 import android.util.Log
-import com.app.gamercalculator.data.model.DollarResponse
 import com.app.gamercalculator.data.model.PlatformDto
-import com.app.gamercalculator.data.network.ApiService
 import com.app.gamercalculator.data.network.PlatformApiService
 import javax.inject.Inject
 
