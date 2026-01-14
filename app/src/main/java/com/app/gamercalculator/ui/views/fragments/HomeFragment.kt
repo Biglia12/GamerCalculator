@@ -47,7 +47,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewLifecycleOwner.lifecycleScope.launch {
             delay(2000)
             if (requireContext().isNetworkAvailable(true)) {
-                viewModel.getDollarFromApi()
+                viewModel.getDollarAndPlatformFromApi()
             } else {
                 binding.containerLoading.visibility = View.GONE
             }

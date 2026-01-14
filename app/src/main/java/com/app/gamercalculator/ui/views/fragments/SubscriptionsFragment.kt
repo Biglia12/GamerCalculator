@@ -28,8 +28,8 @@ class SubscriptionsFragment : Fragment(R.layout.fragment_subscriptions) {
         binding = FragmentSubscriptionsBinding.bind(view)
 
        // viewModel.getDollarFromApi()
-        viewModel.getPlataformsDollar()
-        viewModel.getPlataform()
+       // viewModel.getPlataformsDollar()
+        viewModel.getPlatforms()
         observers()
 
 
@@ -37,7 +37,7 @@ class SubscriptionsFragment : Fragment(R.layout.fragment_subscriptions) {
 
     private fun observers() {
 
-        viewModel.plataforms.observe(viewLifecycleOwner){
+        viewModel.platforms.observe(viewLifecycleOwner){
             binding?.rvDollarCompanies?.layoutManager = LinearLayoutManager(context)
             dollarAdapter = SubscriptionsAdapter(requireContext(), it)
             binding?.rvDollarCompanies?.adapter = dollarAdapter
@@ -47,12 +47,6 @@ class SubscriptionsFragment : Fragment(R.layout.fragment_subscriptions) {
             //binding?.rvDollar?.text = it.toString()
         }
 
-        viewModel.plataformsDollar.observe( viewLifecycleOwner) {
-            /*binding?.rvDollarCompanies?.layoutManager = LinearLayoutManager(context)
-            dollarAdapter = DollarAdapter(requireContext(), it)
-            binding?.rvDollarCompanies?.adapter = dollarAdapter*/
-            //val adapterActions = DollarAdapter(requireContext(), it)
-        }
 
         viewModel.getAllDollar.observe(viewLifecycleOwner){
             Log.d("TAG", "observers: $it")

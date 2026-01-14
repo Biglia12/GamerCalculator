@@ -8,9 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.app.gamercalculator.data.model.DollarResponse
 import com.app.gamercalculator.domain.entities.Dollar
 import com.app.gamercalculator.domain.entities.DollarTaxes
-import com.app.gamercalculator.domain.entities.Plataforms
 import com.app.gamercalculator.domain.usecases.GetDollarUseCase
-import com.app.gamercalculator.domain.usecases.GetPlataformsUseCase
+import com.app.gamercalculator.domain.usecases.GetPlatformsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,17 +18,11 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getDollarUseCase: GetDollarUseCase,
-    private val getPlataformsUseCase: GetPlataformsUseCase
+    private val getPlatformsUseCase: GetPlatformsUseCase
 ) : ViewModel() {
 
     val dollar: LiveData<List<DollarResponse>> get() = _dollar
     private val _dollar = MutableLiveData<List<DollarResponse>>()
-
-    val plataformsDollar: LiveData<List<Plataforms>> get() = _plataformsDollar
-    private val _plataformsDollar = MutableLiveData<List<Plataforms>>()
-
-    val plataformsPesos: LiveData<List<Plataforms>> get() = _plataformsPesos
-    private val _plataformsPesos = MutableLiveData<List<Plataforms>>()
 
     val getAllDollar: LiveData<List<Dollar>> get() = _getAllDollar
     private val _getAllDollar = MutableLiveData<List<Dollar>>()
@@ -50,12 +43,13 @@ class HomeViewModel @Inject constructor(
 
     val selectedDollarType: MutableLiveData<String> = MutableLiveData("tarjeta") // Se guarda el estado seleccionado
 
-    fun getDollarFromApi() {
+    fun getDollarAndPlatformFromApi() {
         viewModelScope.launch(Dispatchers.IO) {
             if (!isDataLoaded) {
                 _isLoading.postValue(true)
                 isDataLoaded = true
                 getDollarUseCase.getDollarFromApi()
+                getPlatformsUseCase.getPlatformsFromApi()
                 _isLoading.postValue(false) // Desactiva el loading
             }
 
@@ -63,13 +57,6 @@ class HomeViewModel @Inject constructor(
 
     }
 
-    fun getPlataformsDollar() {
-        viewModelScope.launch {
-            val plataformsDollar = getPlataformsUseCase.getPlataformsDollar()
-            _plataformsDollar.postValue(plataformsDollar)
-            //  isLoading.postValue(false)
-        }
-    }
 
     fun getDollarCardDigital(inputNumber: String, isDollarChecked: Boolean) {
         viewModelScope.launch(Dispatchers.IO) {

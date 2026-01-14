@@ -2,6 +2,7 @@ package com.app.gamercalculator.di
 
 import com.app.gamercalculator.data.network.ApiService
 import com.app.gamercalculator.data.network.Constants
+import com.app.gamercalculator.data.network.PlatformApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -9,26 +10,26 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
+import javax.inject.Named
 import javax.inject.Singleton
-
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+object NetworkPlatformModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(
+    @Named("PlatformRetrofit")
+    fun providePlatformRetrofit(
         okHttpClient: OkHttpClient
     ): Retrofit = Retrofit.Builder()
-        .baseUrl(Constants.BASE_URL)
+        .baseUrl(Constants.BASE_URL_PLATFORM)
         .addConverterFactory(GsonConverterFactory.create())
         .client(okHttpClient)
         .build()
 
     @Singleton
     @Provides
-    fun provideApiService(retrofit: Retrofit): ApiService =
-        retrofit.create(ApiService::class.java)
+    fun providePlatformApiService(@Named("PlatformRetrofit") retrofit: Retrofit): PlatformApiService =
+        retrofit.create(PlatformApiService::class.java)
 }

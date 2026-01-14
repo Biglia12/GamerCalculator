@@ -1,7 +1,6 @@
 package com.app.gamercalculator.domain.usecases
 
 import com.app.gamercalculator.data.repository.settings.SettingsDataRepository
-import com.app.gamercalculator.domain.entities.Plataforms
 import com.app.gamercalculator.domain.entities.Settings
 import javax.inject.Inject
 
